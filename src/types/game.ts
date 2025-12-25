@@ -1,8 +1,8 @@
-type RollCount = 0 | 1 | 2 | 3;
+export type RollCount = 0 | 1 | 2 | 3;
 
-type GameMode = "play" | "analysis";
+export type GameMode = 'play' | 'analysis';
 
-interface GameState {
+export interface GameState {
   mode: GameMode;
   rollCount: RollCount;
   dice: number[];
@@ -10,7 +10,7 @@ interface GameState {
   lockedDice: boolean[];
 }
 
-interface ScoreSheet {
+export interface ScoreSheet {
   ace: number | null;
   deuce: number | null;
   trey: number | null;
@@ -25,8 +25,8 @@ interface ScoreSheet {
   yacht: number | null;
 }
 
-const initialGameState = {
-  mode: "play",
+export const initialGameState = {
+  mode: 'play',
   rollCount: 0,
   dice: [1, 1, 1, 1, 1],
   scoreSheet: {

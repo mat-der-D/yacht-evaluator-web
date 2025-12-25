@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a **Yacht Dice Game Evaluator Web App** — a single-player web application for playing Yacht (a Yahtzee-style dice game) and analyzing game situations with AI-powered move recommendations.
 
 **Key Details:**
+
 - **Tech Stack**: React 19 + TypeScript + Vite + Bun
 - **Package Manager**: Bun (not npm)
 - **State Management**: React Context API
@@ -53,9 +54,10 @@ src/
 ### GameState & RollCount Type
 
 The `RollCount` type is **NOT "remaining rolls"** but **"rolls completed"**:
+
 - `0`: Initial state (haven't rolled yet)
 - `1`: After 1st roll
-- `2`: After 2nd roll  
+- `2`: After 2nd roll
 - `3`: After 3rd roll
 
 Calculate remaining rolls as: `rollsRemaining = Math.max(0, 3 - rollCount)`
@@ -63,11 +65,13 @@ Calculate remaining rolls as: `rollsRemaining = Math.max(0, 3 - rollCount)`
 ### Game Modes
 
 **Play Mode** (Blue, 🎮 icon):
+
 - User rolls dice and locks/unlocks specific dice between rolls
 - Can confirm a role at any time after rolling (rollCount 1-3)
 - Evaluation button shows recommendations from backend API
 
 **Analysis Mode** (Orange, 🔍 icon):
+
 - User manually sets dice values and rollCount
 - Can enter custom scoresheet values
 - Shows evaluations without button actions
@@ -76,12 +80,14 @@ Calculate remaining rolls as: `rollsRemaining = Math.max(0, 3 - rollCount)`
 ### ScoreSheet Structure
 
 13 roles total, organized as:
+
 - **Upper (6 roles)**: Ace, Deuce, Trey, Four, Five, Six
 - **Upper Total + Bonus**: Auto-calculated (bonus = 35 if upper total ≥ 63)
 - **Lower (7 roles)**: Choice, Four of a Kind, Full House, Small Straight, Big Straight, Yacht
 - **Final Total**: Sum of all scores including bonus
 
 Each role is either:
+
 - Confirmed: numeric value (greyed background #f3f4f6)
 - Unconfirmed: null (white background) with `(+XX)` preview showing what it would score
 - Marked as 0: valid strategy choice
@@ -89,11 +95,13 @@ Each role is either:
 ### Dice Display & Interaction
 
 **Play Mode**:
+
 - Dice shown with dot notation (⚀⚁⚂⚃⚄⚅)
 - Click dice to lock (blue border + 🔒 icon) or unlock (grey border)
 - Locked dice stay fixed when "Roll Dice" button clicked
 
 **Analysis Mode**:
+
 - Click dice to cycle through values (1→2→3→4→5→6→1)
 - Radio buttons select which roll state (0-3 rolls) to analyze
 
@@ -115,8 +123,8 @@ type GameMode = 'play' | 'analysis';
 interface GameState {
   mode: GameMode;
   rollCount: RollCount;
-  dice: number[];  // 5 values (1-6)
-  lockedDice: boolean[];  // Track which dice are locked
+  dice: number[]; // 5 values (1-6)
+  lockedDice: boolean[]; // Track which dice are locked
   scoreSheet: ScoreSheet;
   // ... other fields
 }
@@ -134,15 +142,19 @@ interface ScoreSheet {
 **Endpoint**: `POST /api/v1/evaluate`
 
 **Request**:
+
 ```json
 {
-  "scoreSheet": { /* current scoresheet state */ },
+  "scoreSheet": {
+    /* current scoresheet state */
+  },
   "dice": [1, 2, 3, 4, 5],
   "rollCount": 2
 }
 ```
 
 **Response**:
+
 ```json
 {
   "data": [
@@ -204,21 +216,28 @@ Evaluation Panel (right side, slides in):
 ## Key Implementation Notes
 
 ### Fragment Usage
+
 Use React.Fragment to conditionally insert rows in the scoresheet (upper total & bonus rows appear after the "Six" role).
 
 ### CSS Variables
+
 Define color palette in `styles/variables.css`:
+
 - Play mode: Blue accent (#3b82f6), white backgrounds
 - Analysis mode: Orange accent (#f97316), light yellow backgrounds
 
 ### Score Calculation
+
 The `calculateScore.ts` utility calculates all role values. It must:
+
 - Handle all 13 role types
 - Return preview calculations for unconfirmed roles
 - Calculate bonus correctly (35 points if upper total ≥ 63)
 
 ### State Mutation Prevention
+
 Always use immutable state updates:
+
 ```typescript
 // ❌ Wrong
 gameState.dice[0] = 5;
