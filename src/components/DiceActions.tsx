@@ -1,19 +1,19 @@
-import type { GameMode, RollCount } from '../types/game';
+import { useGame } from '../context/GameContext';
 
-interface DiceActionsProps {
-  mode: GameMode;
-  rollCount: RollCount;
-}
+function PlayModeActions() {
+  const { gameState: { rollCount }, dispatch } = useGame()
+  const rollsRemaining = Math.max(0, 3 - rollCount);
 
-function PlayModeActions({ rollsRemaining }: { rollsRemaining: number }) {
   return (
     <div className="dice-actions">
-      <button>[サイコロを振る] あと {rollsRemaining} 回</button>
+      <button onClick={() => dispatch({ type: 'ROLL_DICE' })}>
+        [サイコロを振る] あと {rollsRemaining} 回
+      </button>
     </div>
   );
 }
 
-function AnalysisModeActions({ rollCount }: { rollCount: RollCount }) {
+function AnalysisModeActions() {
   return (
     <div className="dice-actions">
       {[0, 1, 2, 3].map((roll) => (
@@ -26,12 +26,12 @@ function AnalysisModeActions({ rollCount }: { rollCount: RollCount }) {
   );
 }
 
-export default function DiceActions({ mode, rollCount }: DiceActionsProps) {
-  const rollsRemaining = Math.max(0, 3 - rollCount);
+export default function DiceActions() {
+  const { gameState: { mode } } = useGame()
 
   return mode === 'play' ? (
-    <PlayModeActions rollsRemaining={rollsRemaining} />
+    <PlayModeActions />
   ) : (
-    <AnalysisModeActions rollCount={rollCount} />
+    <AnalysisModeActions />
   );
 }

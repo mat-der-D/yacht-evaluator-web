@@ -1,25 +1,23 @@
-import type { GameMode, GameState } from '../types/game';
+import type { GameMode } from '../types/game';
 import ModeTab from './ModeTab';
 import GameHeader from './GameHeader';
 import DiceDisplay from './DiceDisplay';
 import DiceActions from './DiceActions';
+import { useGame } from '../context/GameContext';
 
-interface LayoutProps {
-  gameState: GameState;
-  setGameState: (state: GameState) => void;
-}
+export default function Layout() {
+  const { gameState, dispatch } = useGame()
 
-export default function Layout({ gameState, setGameState }: LayoutProps) {
   const handleModeChange = (newMode: GameMode) => {
-    setGameState({ ...gameState, mode: newMode });
+    dispatch({ type: 'CHANGE_MODE', payload: newMode })
   };
 
   return (
     <div className="layout">
       <ModeTab mode={gameState.mode} onModeChange={handleModeChange} />
       <GameHeader mode={gameState.mode} />
-      <DiceDisplay dice={gameState.dice} />
-      <DiceActions mode={gameState.mode} rollCount={gameState.rollCount} />
+      <DiceDisplay />
+      <DiceActions />
       {/*<EvaluationButton></EvaluationButton>
       <ScoreSheet></ScoreSheet>*/}
     </div>
