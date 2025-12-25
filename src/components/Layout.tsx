@@ -1,6 +1,8 @@
 import type { GameMode, GameState } from '../types/game';
 import ModeTab from './ModeTab';
 import GameHeader from './GameHeader';
+import DiceDisplay from './DiceDisplay';
+import DiceActions from './DiceActions';
 
 interface LayoutProps {
   gameState: GameState;
@@ -16,10 +18,10 @@ export default function Layout({ gameState, setGameState }: LayoutProps) {
     <div className="layout">
       <ModeTab mode={gameState.mode} onModeChange={handleModeChange} />
       <GameHeader mode={gameState.mode} />
-      <DiceDisplay></DiceDisplay>
-      <DiceActions></DiceActions>
-      <EvaluationButton></EvaluationButton>
-      <ScoreSheet></ScoreSheet>
+      <DiceDisplay dice={gameState.dice} />
+      <DiceActions mode={gameState.mode} rollCount={gameState.rollCount} />
+      {/*<EvaluationButton></EvaluationButton>
+      <ScoreSheet></ScoreSheet>*/}
     </div>
   );
 }
