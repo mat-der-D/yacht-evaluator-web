@@ -26,12 +26,17 @@ bun run build
 # Preview production build locally
 bun run preview
 
-# Lint TypeScript/JavaScript
+# Lint TypeScript/JavaScript (flat config, ESLint 9+)
 bun run lint
+
+# Format code with Prettier
+bun run format
 
 # Type check (already runs during build)
 bun run build  # Uses: tsc -b && vite build
 ```
+
+**Note**: ESLint uses the new flat config format (`eslint.config.js`) with TypeScript support via `@typescript-eslint` and React hooks validation enabled by default.
 
 ## Project Structure
 
@@ -40,14 +45,18 @@ The app follows a 7-phase implementation plan (see `docs/implementation_plan.md`
 ```
 src/
 ├── components/          # React components
-├── hooks/              # Custom React hooks (useGameState, useEvaluation, etc.)
-├── context/            # GameContext for state management
+├── hooks/              # Custom React hooks (useGameState, useEvaluation, etc.) - PLANNED
+├── context/            # GameContext for state management - PLANNED
 ├── types/              # TypeScript type definitions (game.ts, api.ts, ui.ts)
-├── utils/              # Utility functions (calculateScore.ts, diceUtils.ts, etc.)
+│   └── game.ts         # ✓ CREATED (RollCount, GameMode, GameState, ScoreSheet)
+├── utils/              # Utility functions (calculateScore.ts, diceUtils.ts, etc.) - PLANNED
 ├── styles/             # CSS files (global.css, variables.css, components.css)
-├── App.tsx             # Root component
-└── main.tsx            # Entry point
+│   └── global.css      # ✓ CREATED
+├── App.tsx             # ✓ CREATED - Root component with useState
+└── main.tsx            # ✓ CREATED - Entry point
 ```
+
+**Current Status** (as of latest commit): Phase 1-3 partially complete. Core UI components exist (ModeTab, GameHeader, DiceDisplay, DiceItem, DiceActions, Layout). Next: Implement ScoreSheet component and state handlers.
 
 ## Critical Architecture Concepts
 
@@ -130,12 +139,24 @@ interface GameState {
 }
 
 interface ScoreSheet {
-  // Upper
+  // Upper (6 roles)
   ace: number | null;
   deuce: number | null;
-  // ... etc for all 13 roles
+  trey: number | null;
+  four: number | null;
+  five: number | null;
+  six: number | null;
+  // Lower (7 roles)
+  choice: number | null;
+  fourOfAKind: number | null;
+  fullHouse: number | null;
+  smallStraight: number | null;
+  bigStraight: number | null;
+  yacht: number | null;
 }
 ```
+
+**Important**: The `ScoreSheet` interface contains only the 13 playable roles. Upper total, bonus, and final total are **calculated dynamically** during rendering (not stored in state). See `calculateScore.ts` for total calculation logic.
 
 ## API Integration
 
@@ -246,6 +267,25 @@ gameState.dice[0] = 5;
 setGameState({ ...gameState, dice: [5, ...gameState.dice.slice(1)] });
 ```
 
+### State Management Pattern
+
+**Current approach**: Game state lives in `App.tsx` (`useState`) and is passed down via props to `Layout`. This is appropriate for the early phases and keeps the app simple.
+
+**When Context is needed**: As the component tree grows, use React Context (in `context/GameContext.tsx`) for deeply nested consumers (e.g., evaluation panel, scoresheet). Context should wrap `Layout` in `App.tsx`:
+
+```typescript
+// App.tsx - Add context provider when needed
+<GameProvider gameState={gameState} setGameState={setGameState}>
+  <Layout />
+</GameProvider>
+```
+
+**Rule of thumb**:
+
+- Props are fine for 2-3 levels of nesting
+- Use Context when passing through >3 intermediate components
+- Keep state as low in the tree as possible (don't put everything in Context)
+
 ## Documentation Files
 
 - **`docs/yacht-rules.md`**: Complete Yacht game rules and role descriptions
@@ -268,6 +308,21 @@ setGameState({ ...gameState, dice: [5, ...gameState.dice.slice(1)] });
 - **API calls**: Check Network tab in browser DevTools
 - **Styling**: Use browser DevTools Inspector to trace CSS issues
 - **CSS resets needed?**: Check `styles/global.css` for base styles
+
+## Common Pitfalls in This Codebase
+
+1. **RollCount confusion**: Remember that `rollCount` represents **rolls completed**, not remaining. Always calculate `remaining = 3 - rollCount` when needed.
+
+2. **ScoreSheet totals**: Don't add `upperTotal`, `bonus`, or `finalTotal` fields to ScoreSheet. These are **calculated on-the-fly** during rendering based on the 13 role values. Use `calculateScore.ts` utilities.
+
+3. **Mode-specific rendering**: Some UI elements behave differently in Play vs Analysis mode:
+   - Play mode: "Roll Dice" button, locked dice visualization, Evaluate button applies suggestions
+   - Analysis mode: Roll count radio buttons, dice cycle on click, Evaluate is read-only
+   - Always check `gameState.mode` before conditional rendering
+
+4. **Dice locking in Play mode**: When rolling dice, only unlock the non-locked dice. The `lockedDice` array must have the same length as `dice` (5 elements).
+
+5. **API call timing**: Only call the evaluate API when `rollCount > 0`. Validate this in the component before making requests.
 
 ## Important Constraints
 
