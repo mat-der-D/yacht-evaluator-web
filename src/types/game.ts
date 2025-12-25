@@ -24,3 +24,24 @@ interface ScoreSheet {
   bigStraight: number | null;
   yacht: number | null;
 }
+
+const initialGameState = {
+  mode: "play",
+  rollCount: 0,
+  dice: [1, 1, 1, 1, 1],
+  scoreSheet: {
+    ace: null,
+    deuce: null,
+    trey: null,
+    four: null,
+    five: null,
+    six: null,
+    choice: null,
+    fourOfAKind: null,
+    fullHouse: null,
+    smallStraight: null,
+    bigStraight: null,
+    yacht: null,
+  },
+  lockedDice: [false, false, false, false, false],
+} as const;
