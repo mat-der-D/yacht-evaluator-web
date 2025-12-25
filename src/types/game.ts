@@ -25,7 +25,7 @@ export interface ScoreSheet {
   yacht: number | null;
 }
 
-export const initialGameState = {
+export const initialGameState: GameState = {
   mode: 'play',
   rollCount: 0,
   dice: [1, 1, 1, 1, 1],
@@ -44,4 +44,4 @@ export const initialGameState = {
     yacht: null,
   },
   lockedDice: [false, false, false, false, false],
-} as const;
+};
