@@ -1,4 +1,4 @@
-import { useGame } from "../context/GameContext";
+import { useGame } from '../context/GameContext';
 
 export default function DiceItem({ index }: { index: number }) {
   const diceSymbols: Record<number, string> = {
@@ -10,7 +10,18 @@ export default function DiceItem({ index }: { index: number }) {
     6: '⚅',
   };
 
-  const { gameState } = useGame()
-  const diceValue = gameState.dice[index]
-  return <div className="dice-item">{diceSymbols[diceValue]}</div>;
+  const { gameState, dispatch } = useGame();
+  const diceValue = gameState.dice[index];
+  const handleClick = () => {
+    if (gameState.mode === 'play') {
+      dispatch({ type: 'LOCK_DICE', payload: index });
+    } else {
+      dispatch({ type: 'INCREMENT_DICE', payload: index });
+    }
+  };
+  return (
+    <div className="dice-item" onClick={handleClick}>
+      {diceSymbols[diceValue]}
+    </div>
+  );
 }

@@ -1,7 +1,10 @@
 import { useGame } from '../context/GameContext';
 
 function PlayModeActions() {
-  const { gameState: { rollCount }, dispatch } = useGame()
+  const {
+    gameState: { rollCount },
+    dispatch,
+  } = useGame();
   const rollsRemaining = Math.max(0, 3 - rollCount);
 
   return (
@@ -27,11 +30,9 @@ function AnalysisModeActions() {
 }
 
 export default function DiceActions() {
-  const { gameState: { mode } } = useGame()
+  const {
+    gameState: { mode },
+  } = useGame();
 
-  return mode === 'play' ? (
-    <PlayModeActions />
-  ) : (
-    <AnalysisModeActions />
-  );
+  return mode === 'play' ? <PlayModeActions /> : <AnalysisModeActions />;
 }

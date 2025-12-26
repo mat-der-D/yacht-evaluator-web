@@ -6,10 +6,10 @@ import DiceActions from './DiceActions';
 import { useGame } from '../context/GameContext';
 
 export default function Layout() {
-  const { gameState, dispatch } = useGame()
+  const { gameState, dispatch } = useGame();
 
   const handleModeChange = (newMode: GameMode) => {
-    dispatch({ type: 'CHANGE_MODE', payload: newMode })
+    dispatch({ type: 'CHANGE_MODE', payload: newMode });
   };
 
   return (
