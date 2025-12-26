@@ -11,7 +11,7 @@ export default function DiceItem({ index }: { index: number }) {
   };
 
   const { gameState, dispatch } = useGame();
-  const diceValue = gameState.dice[index];
+
   const handleClick = () => {
     if (gameState.mode === 'play') {
       dispatch({ type: 'LOCK_DICE', payload: index });
@@ -19,8 +19,12 @@ export default function DiceItem({ index }: { index: number }) {
       dispatch({ type: 'INCREMENT_DICE', payload: index });
     }
   };
+
+  const diceValue = gameState.dice[index];
+  const isLocked = gameState.lockedDice[index];
+
   return (
-    <div className="dice-item" onClick={handleClick}>
+    <div className={isLocked ? 'dice-item--locked' : 'dice-item--unlocked'} onClick={handleClick}>
       {diceSymbols[diceValue]}
     </div>
   );
