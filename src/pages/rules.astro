@@ -2,104 +2,103 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Yacht ルール説明" description="Yachtダイスゲームの詳しいルール説明">
+<BaseLayout title="ヨットのルール" description="ヨットダイスゲームのルール説明">
   <div class="rules-container">
     <div class="container">
-      <h1>🎲 Yacht ルール説明</h1>
+      <h1>🎲 ヨットのルール</h1>
 
       <section class="rule-section">
-        <h2>ゲームの概要</h2>
+        <h2>どんなゲーム？</h2>
         <p>
-          Yacht（ヨット）は、5つのサイコロを使って遊ぶダイスゲームです。
-          各ターンで最大3回までサイコロを振り、13種類の役のいずれかを完成させてスコアを獲得します。
-          すべての役が埋まったらゲーム終了で、最も高いスコアを目指します。
+          ヨットは、5つのサイコロを使って遊ぶダイスゲームです。
+          1ターンに最大3回までサイコロを振り、13種類ある役のどれかに得点を記録します。
+          全部の役を埋めたらゲーム終了。合計点の高さを競います。
         </p>
       </section>
 
       <section class="rule-section">
         <h2>基本ルール</h2>
         <ul class="rule-list">
-          <li>プレイヤーは1人（シングルプレイヤーモード）</li>
-          <li>各ターンで最大3回までサイコロを振ることができます</li>
-          <li>1回目と2回目のロールの後、好きなサイコロをキープ（ロック）できます</li>
-          <li>13種類の役があり、それぞれ1回ずつしか使用できません</li>
-          <li>役を完成できない場合でも、どれか1つの役を選んで0点として埋める必要があります</li>
+          <li>1ターンに最大3回までサイコロを振れます</li>
+          <li>1回目・2回目の後、好きなサイコロをキープできます</li>
+          <li>役は全部で13種類。それぞれ1回ずつしか使えません</li>
+          <li>役が作れなくても、どれか1つを0点で埋める必要があります</li>
         </ul>
       </section>
 
       <section class="rule-section">
         <h2>役の種類</h2>
 
-        <h3>上段（数字役）</h3>
+        <h3>上段（数字の役）</h3>
         <div class="category-list">
           <div class="category-item">
-            <h4>Ace（エース）</h4>
-            <p>1の目が出たサイコロの合計点</p>
-            <p class="example">例: ⚀⚀⚁⚂⚃ = 2点</p>
+            <h4>エース</h4>
+            <p>1の目の合計</p>
+            <p class="example">例: ⚀⚀⚁⚂⚃ → 2点</p>
           </div>
           <div class="category-item">
-            <h4>Deuce（デュース）</h4>
-            <p>2の目が出たサイコロの合計点</p>
-            <p class="example">例: ⚁⚁⚁⚂⚃ = 6点</p>
+            <h4>デュース</h4>
+            <p>2の目の合計</p>
+            <p class="example">例: ⚁⚁⚁⚂⚃ → 6点</p>
           </div>
           <div class="category-item">
-            <h4>Trey（トレイ）</h4>
-            <p>3の目が出たサイコロの合計点</p>
-            <p class="example">例: ⚂⚂⚂⚃⚄ = 9点</p>
+            <h4>トレイ</h4>
+            <p>3の目の合計</p>
+            <p class="example">例: ⚂⚂⚂⚃⚄ → 9点</p>
           </div>
           <div class="category-item">
-            <h4>Four（フォー）</h4>
-            <p>4の目が出たサイコロの合計点</p>
-            <p class="example">例: ⚃⚃⚃⚄⚅ = 12点</p>
+            <h4>フォー</h4>
+            <p>4の目の合計</p>
+            <p class="example">例: ⚃⚃⚃⚄⚅ → 12点</p>
           </div>
           <div class="category-item">
-            <h4>Five（ファイブ）</h4>
-            <p>5の目が出たサイコロの合計点</p>
-            <p class="example">例: ⚄⚄⚄⚃⚅ = 15点</p>
+            <h4>ファイブ</h4>
+            <p>5の目の合計</p>
+            <p class="example">例: ⚄⚄⚄⚃⚅ → 15点</p>
           </div>
           <div class="category-item">
-            <h4>Six（シックス）</h4>
-            <p>6の目が出たサイコロの合計点</p>
-            <p class="example">例: ⚅⚅⚅⚄⚃ = 18点</p>
+            <h4>シックス</h4>
+            <p>6の目の合計</p>
+            <p class="example">例: ⚅⚅⚅⚄⚃ → 18点</p>
           </div>
         </div>
 
         <div class="bonus-info">
           <h4>🎁 ボーナス</h4>
-          <p>上段の合計が63点以上の場合、35点のボーナスが加算されます。</p>
+          <p>上段の合計が63点以上なら、35点のボーナスがもらえます。</p>
         </div>
 
-        <h3>下段（役物）</h3>
+        <h3>下段（特殊な役）</h3>
         <div class="category-list">
           <div class="category-item">
-            <h4>Choice（チョイス）</h4>
-            <p>サイコロ5つの合計点（役の制限なし）</p>
-            <p class="example">例: ⚀⚁⚂⚃⚄ = 15点</p>
+            <h4>チョイス</h4>
+            <p>サイコロ5つの合計（役の制限なし）</p>
+            <p class="example">例: ⚀⚁⚂⚃⚄ → 15点</p>
           </div>
           <div class="category-item">
-            <h4>Four of a Kind（フォーカード）</h4>
-            <p>同じ目が4つ以上ある場合、サイコロ5つの合計点</p>
-            <p class="example">例: ⚃⚃⚃⚃⚁ = 18点</p>
+            <h4>フォーダイス</h4>
+            <p>同じ目が4つ以上あれば、5つの合計点</p>
+            <p class="example">例: ⚃⚃⚃⚃⚁ → 18点</p>
           </div>
           <div class="category-item">
-            <h4>Full House（フルハウス）</h4>
-            <p>3つ同じ目 + 2つ同じ目の組み合わせで25点</p>
-            <p class="example">例: ⚂⚂⚂⚅⚅ = 25点</p>
+            <h4>フルハウス</h4>
+            <p>同じ目3つ＋同じ目2つの組み合わせで、固定の25点</p>
+            <p class="example">例: ⚂⚂⚂⚅⚅ → 25点</p>
           </div>
           <div class="category-item">
-            <h4>Small Straight（スモールストレート）</h4>
-            <p>4つ連続した数字がある場合、30点</p>
-            <p class="example">例: ⚀⚁⚂⚃⚅ = 30点</p>
+            <h4>スモールストレート</h4>
+            <p>4つ連続する数字があれば、固定の30点</p>
+            <p class="example">例: ⚀⚁⚂⚃⚅ → 30点</p>
           </div>
           <div class="category-item">
-            <h4>Big Straight（ビッグストレート）</h4>
-            <p>5つすべて連続した数字の場合、30点</p>
-            <p class="example">例: ⚁⚂⚃⚄⚅ = 30点</p>
+            <h4>ビッグストレート</h4>
+            <p>5つ全部が連続する数字なら、固定の30点</p>
+            <p class="example">例: ⚁⚂⚃⚄⚅ → 30点</p>
           </div>
           <div class="category-item">
-            <h4>Yacht（ヨット）</h4>
-            <p>5つすべて同じ目の場合、50点</p>
-            <p class="example">例: ⚃⚃⚃⚃⚃ = 50点</p>
+            <h4>ヨット</h4>
+            <p>5つ全部が同じ目なら、固定の50点</p>
+            <p class="example">例: ⚃⚃⚃⚃⚃ → 50点</p>
           </div>
         </div>
       </section>
@@ -107,47 +106,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <section class="rule-section">
         <h2>ゲームの流れ</h2>
         <ol class="game-flow">
-          <li>
-            <strong>1回目のロール:</strong> 5つのサイコロをすべて振る
-          </li>
-          <li>
-            <strong>サイコロの選択:</strong> キープしたいサイコロを選択（ロック）
-          </li>
-          <li>
-            <strong>2回目のロール:</strong> ロックされていないサイコロを振る
-          </li>
-          <li>
-            <strong>サイコロの選択:</strong> 再度キープするサイコロを選択
-          </li>
-          <li>
-            <strong>3回目のロール:</strong> ロックされていないサイコロを振る
-          </li>
-          <li>
-            <strong>役の確定:</strong> 13種類の役から1つを選んでスコアを記録
-          </li>
-          <li>
-            <strong>繰り返し:</strong> すべての役が埋まるまで繰り返す
-          </li>
+          <li>5つのサイコロを振る</li>
+          <li>キープしたいサイコロを選ぶ</li>
+          <li>残りのサイコロを振る（2回目）</li>
+          <li>またキープするサイコロを選ぶ</li>
+          <li>残りのサイコロを振る（3回目）</li>
+          <li>13種類の役から1つ選んで得点を記録</li>
+          <li>全ての役が埋まるまで繰り返す</li>
         </ol>
         <p class="note">
-          ※ロールは3回まで可能ですが、1回目や2回目の後でも役を確定できます。
+          ※1回目や2回目の後でも、すぐに役を確定してOKです。3回振る必要はありません。
         </p>
       </section>
 
       <section class="rule-section">
-        <h2>戦略のヒント</h2>
+        <h2>攻略のコツ</h2>
         <ul class="strategy-list">
-          <li>上段のボーナス（35点）を狙うには、平均して各数字を3つずつ確保する必要があります</li>
-          <li>Yacht（50点）やBig Straight（30点）は高得点ですが、確率は低いです</li>
-          <li>Four of a Kindは比較的狙いやすく、高得点が期待できます</li>
-          <li>確実に点を取れない場合は、上段の小さい数字（AceやDeuce）を0点で埋める戦略も有効です</li>
-          <li>分析モードを使って、期待値を確認しながら最適な戦略を学びましょう</li>
+          <li>ボーナス（35点）を取るには、上段で平均して各数字を3つずつ取る必要があります</li>
+          <li>ヨット（50点）やビッグストレート（30点）は高得点ですが、なかなか出ません</li>
+          <li>フォーダイスは比較的狙いやすく、高得点になりやすいです</li>
+          <li>どうしても点が取れないときは、エースやデュースを0点で埋めるのも手です</li>
+          <li>分析モードで期待値を確認しながら、最善手を学んでいきましょう</li>
         </ul>
       </section>
 
       <div class="cta-section">
-        <a href="/app" class="btn btn-primary">アプリを起動して遊ぶ</a>
-        <a href="/" class="btn btn-secondary">ホームに戻る</a>
+        <a href="/app" class="btn btn-primary">遊んでみる</a>
+        <a href="/" class="btn btn-secondary">トップに戻る</a>
       </div>
     </div>
   </div>

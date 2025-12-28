@@ -9,14 +9,14 @@ const { currentPath = '' } = Astro.props;
 <header class="site-header">
   <div class="header-container">
     <div class="logo">
-      <a href="/">🎲 Yacht Evaluator</a>
+      <a href="/">🎲 ヨット評価ツール</a>
     </div>
     <nav class="main-nav">
       <ul>
-        <li><a href="/" class={currentPath === '/' ? 'active' : ''}>ホーム</a></li>
-        <li><a href="/rules" class={currentPath === '/rules' ? 'active' : ''}>ルール説明</a></li>
-        <li><a href="/about" class={currentPath === '/about' ? 'active' : ''}>ツール解説</a></li>
-        <li><a href="/app" class={`app-link ${currentPath === '/app' ? 'active' : ''}`}>アプリを起動</a></li>
+        <li><a href="/" class={currentPath === '/' ? 'active' : ''}>トップ</a></li>
+        <li><a href="/rules" class={currentPath === '/rules' ? 'active' : ''}>ルール</a></li>
+        <li><a href="/about" class={currentPath === '/about' ? 'active' : ''}>使い方</a></li>
+        <li><a href="/app" class={`app-link ${currentPath === '/app' ? 'active' : ''}`}>遊ぶ</a></li>
       </ul>
     </nav>
   </div>
