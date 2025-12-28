@@ -452,6 +452,11 @@ input[type='number'] {
     transition: all 0.2s ease;
   }
 
+  .dice-actions label {
+    gap: 4px;
+    padding: 0px;
+  }
+
   .dice-actions {
     gap: 10px;
   }
