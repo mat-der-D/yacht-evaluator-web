@@ -1,8 +1,12 @@
 import { useGame } from '../context/GameContext';
 import { useEvaluation } from '../hooks/useEvaluation';
-import type { EvaluationRequest } from '../utils/api';
+import type { Choice, EvaluationRequest } from '../utils/api';
 
-export default function EvaluationButton() {
+interface EvaluationButtonProps {
+  onEvaluationComplete: (choices: Choice[]) => void;
+}
+
+export default function EvaluationButton({ onEvaluationComplete }: EvaluationButtonProps) {
   const { gameState } = useGame();
   const { loading, evaluate } = useEvaluation();
   const { scoreSheet, dice, rollCount } = gameState;
@@ -13,7 +17,10 @@ export default function EvaluationButton() {
       dice,
       rollCount,
     };
-    return evaluate(request);
+    const result = await evaluate(request);
+    if (result) {
+      onEvaluationComplete(result)
+    }
   };
 
   const isGameFinished = Object.values(scoreSheet).every((value) => value !== null);

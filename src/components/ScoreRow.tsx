@@ -18,8 +18,8 @@ export default function ScoreRow({ categoryKey, label }: ScoreRowProps) {
 
   const { scoreSheet, dice, rollCount } = gameState;
 
-  const handleConfirmButton = (category: keyof ScoreSheet, score: number) => {
-    dispatch({ type: 'CONFIRM_SCORE', payload: { key: category, value: score } });
+  const handleConfirmButton = (category: keyof ScoreSheet) => {
+    dispatch({ type: 'CONFIRM_SCORE', payload: category });
   };
 
   let score: number | null = null;
@@ -58,7 +58,7 @@ export default function ScoreRow({ categoryKey, label }: ScoreRowProps) {
       <td>
         <button
           disabled={isConfirmButtonDisabled}
-          onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet, potentialScore)}
+          onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet)}
         >
           確定
         </button>

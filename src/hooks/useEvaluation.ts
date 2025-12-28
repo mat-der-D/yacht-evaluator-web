@@ -1,17 +1,15 @@
 import { useState, useCallback } from 'react';
-import { evaluateMove, type Choice, type EvaluationRequest } from '../utils/api';
+import { evaluateMove, type EvaluationRequest } from '../utils/api';
 
 export function useEvaluation() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<Choice[]>([]);
 
   const evaluate = useCallback(async (request: EvaluationRequest) => {
     setLoading(true);
     setError(null);
     try {
-      const choices = await evaluateMove(request);
-      setData(choices);
+      return await evaluateMove(request);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -23,5 +21,5 @@ export function useEvaluation() {
     }
   }, []);
 
-  return { loading, error, data, evaluate };
+  return { loading, error, evaluate };
 }

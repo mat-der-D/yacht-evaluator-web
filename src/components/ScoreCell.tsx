@@ -29,8 +29,8 @@ export default function ScoreCell({
         dispatch({
           type: 'UPDATE_SCORE',
           payload: {
-            key: categoryKey as keyof ScoreSheet,
-            value: numValue,
+            category: categoryKey as keyof ScoreSheet,
+            score: numValue,
           },
         });
       }}
