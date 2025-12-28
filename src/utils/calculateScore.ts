@@ -157,8 +157,8 @@ export function calculateFinalTotal(scoreSheet: ScoreSheet): number {
 /**
  * 指定した役のスコアを計算するヘルパー関数
  */
-export function calculateRoleScore(roleKey: keyof ScoreSheet, dice: number[]): number {
-  switch (roleKey) {
+export function calculateCategoryScore(category: keyof ScoreSheet, dice: number[]): number {
+  switch (category) {
     case 'ace':
       return calculateAce(dice);
     case 'deuce':

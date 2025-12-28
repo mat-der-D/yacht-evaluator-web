@@ -98,3 +98,63 @@ button {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+/* ScoreSheet */
+.score-sheet {
+  margin: 20px 0;
+}
+
+.score-sheet table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.score-sheet tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.score-sheet td {
+  padding: 12px;
+}
+
+.score-label {
+  text-align: left;
+}
+
+.score-value {
+  text-align: right;
+  width: 100px;
+}
+
+.score-action {
+  text-align: center;
+  width: 100px;
+}
+
+/* スコア未確定時の表示 */
+.score-unconfirmed {
+  background-color: #fff9e6;
+  color: #999;
+  font-style: italic;
+}
+
+/* 特殊行（合計など） */
+.score-special {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+
+/* ボタン */
+.score-sheet button {
+  padding: 6px 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.score-sheet button:hover {
+  background-color: #2563eb;
+}
