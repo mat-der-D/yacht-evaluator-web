@@ -191,7 +191,7 @@ button {
 }
 
 .score-sheet tr {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 3px solid #e5e7eb;
   display: flex;
   align-items: center;
   min-height: 48px;
