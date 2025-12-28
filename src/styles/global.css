@@ -6,7 +6,21 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f3f4f6;
+}
+
+.app {
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+/* プレイモード */
+.app--play {
+  background-color: #f8fbff;
+}
+
+/* 解析モード */
+.app--analysis {
+  background-color: #fffbf0;
 }
 
 .layout {
