@@ -15,10 +15,11 @@ export default function DiceItem({ index }: { index: number }) {
   const diceValue = gameState.dice[index];
   const isLocked = gameState.lockedDice[index];
   const showLockIcon = isLocked && gameState.mode === 'play';
+  const className = `dice-item ${showLockIcon ? 'dice-item--locked' : 'dice-item--unlocked'}`
 
   return (
     <div
-      className={showLockIcon ? 'dice-item--locked' : 'dice-item--unlocked'}
+      className={className}
       onClick={handleClick}
     >
       {DICE_SYMBOLS[diceValue]}
