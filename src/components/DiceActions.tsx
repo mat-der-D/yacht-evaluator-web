@@ -1,4 +1,5 @@
 import { useGame } from '../context/GameContext';
+import type { RollCount } from '../types/game';
 
 function PlayModeActions() {
   const {
@@ -9,7 +10,7 @@ function PlayModeActions() {
 
   return (
     <div className="dice-actions">
-      <button onClick={() => dispatch({ type: 'ROLL_DICE' })}>
+      <button onClick={() => dispatch({ type: 'ROLL_DICE' })} disabled={rollsRemaining === 0}>
         [サイコロを振る] あと {rollsRemaining} 回
       </button>
     </div>
@@ -17,11 +18,19 @@ function PlayModeActions() {
 }
 
 function AnalysisModeActions() {
+  const { gameState, dispatch } = useGame();
+
   return (
     <div className="dice-actions">
       {[0, 1, 2, 3].map((roll) => (
         <label key={roll}>
-          <input type="radio" name="rollCount" value={roll} />
+          <input
+            type="radio"
+            name="rollCount"
+            value={roll}
+            checked={gameState.rollCount === roll}
+            onChange={() => dispatch({ type: 'SET_ROLLCOUNT', payload: roll as RollCount })}
+          />
           {roll}投目
         </label>
       ))}

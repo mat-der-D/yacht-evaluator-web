@@ -53,6 +53,45 @@ body {
   font-size: 16px;
 }
 
+.dice-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.dice-actions button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dice-actions button:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.dice-actions button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.dice-actions label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dice-actions input[type='radio'] {
+  cursor: pointer;
+}
+
 button {
   padding: 10px 20px;
   cursor: pointer;

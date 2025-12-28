@@ -25,16 +25,19 @@
 ### 4. Prop Drilling の完全な解決
 
 #### ModeTab の修正
+
 - ✅ GameHeaderProps インターフェース削除
 - ✅ `useGame()` で gameState を直接取得
 - ✅ onClick で `dispatch({ type: 'CHANGE_MODE', payload: ... })` を実行
 
 #### GameHeader の修正
+
 - ✅ GameHeaderProps インターフェース削除
 - ✅ `useGame()` で gameState を直接取得
 - ✅ props を削除
 
 #### Layout の簡潔化
+
 - ✅ `handleModeChange` 関数を削除
 - ✅ 不要な `useGame` 呼び出しを削除
 - ✅ コンポーネント構成に専念
@@ -52,21 +55,25 @@
 ## 学習ポイント（重要な概念）
 
 ### 条件付きスタイリング
+
 - テンプレートリテラル + 三項演算子で className を動的に生成
 - React では同じ HTML 要素でも状態に応じて見た目を変える
 - BEM 記法（Block Element Modifier）でスタイルクラスを命名
 
 ### 中間変数で意図を名前付けする
+
 - `showLockIcon` という変数で条件判定を分かりやすく
 - ロジック（条件判定）と UI（JSX）を分離
 - テストしやすく、後の修正が容易
 
 ### Context API での責任分離
+
 - 各コンポーネントが必要なデータと操作を自分で管理
 - Props を中間層で受け渡す必要がない（Prop Drilling 解決）
 - コンポーネント構造の変更に強いアーキテクチャ
 
 ### CSS 疑似要素 `::after` の活用
+
 - 要素の後ろに新しい要素を挿入（content プロパティで指定）
 - DOM を増やさずに視覚的な装飾を追加
 - 特定の条件下でのみ表示（セレクタの組み合わせ）
@@ -131,6 +138,7 @@ case 'INCREMENT_DICE': {
 **Phase 4: スコアシート実装** へ進む準備完了
 
 主なタスク：
+
 - スコア計算ロジック（utils/calculateScore.ts）
 - ScoreSheet コンポーネント（テーブル構造）
 - ScoreRow コンポーネント（各行のUI）
