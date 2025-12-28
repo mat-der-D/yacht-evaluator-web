@@ -19,7 +19,7 @@ export default function EvaluationButton({ onEvaluationComplete }: EvaluationBut
     };
     const result = await evaluate(request);
     if (result) {
-      onEvaluationComplete(result)
+      onEvaluationComplete(result);
     }
   };
 

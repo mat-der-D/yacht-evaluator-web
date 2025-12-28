@@ -16,8 +16,8 @@ export default function Layout() {
 
   // EvaluationButton が呼ぶハンドラー
   const handleEvaluationComplete = (choices: Choice[]) => {
-    setEvaluationPanelOpen(true)
-    setEvaluationChoices(choices)
+    setEvaluationPanelOpen(true);
+    setEvaluationChoices(choices);
   };
 
   // EvaluationPanel の [適用] ボタンが呼ぶハンドラー
