@@ -10,9 +10,10 @@ This is a **Yacht Dice Game Evaluator Web App** — a single-player web applicat
 
 - **Tech Stack**: React 19 + TypeScript + Vite + Bun
 - **Package Manager**: Bun (not npm)
-- **State Management**: React Context API
+- **State Management**: React Context API + useReducer (game logic is centralized)
 - **Styling**: Plain CSS with CSS variables
 - **Game Logic**: Single player, 13 roles across 2 phases (6 upper roles + 7 lower roles)
+- **Learning Context**: This is a React fundamentals learning project for beginners. See `docs/instruction_rules.md` for teaching approach.
 
 ## Essential Commands
 
@@ -20,7 +21,7 @@ This is a **Yacht Dice Game Evaluator Web App** — a single-player web applicat
 # Development server (runs on http://localhost:5173)
 bun run dev
 
-# Build for production
+# Build for production (runs TypeScript check + Vite build)
 bun run build
 
 # Preview production build locally
@@ -31,32 +32,53 @@ bun run lint
 
 # Format code with Prettier
 bun run format
-
-# Type check (already runs during build)
-bun run build  # Uses: tsc -b && vite build
 ```
 
 **Note**: ESLint uses the new flat config format (`eslint.config.js`) with TypeScript support via `@typescript-eslint` and React hooks validation enabled by default.
 
 ## Project Structure
 
-The app follows a 7-phase implementation plan (see `docs/implementation_plan.md`). Current status can be determined by checking which components exist in `src/components/`.
+The app follows a 7-phase implementation plan (see `docs/implementation_plan.md`). **Current status**: Phase 7 (styling & polish) is in progress.
 
 ```
 src/
-├── components/          # React components
-├── hooks/              # Custom React hooks (useGameState, useEvaluation, etc.) - PLANNED
-├── context/            # GameContext for state management - PLANNED
-├── types/              # TypeScript type definitions (game.ts, api.ts, ui.ts)
-│   └── game.ts         # ✓ CREATED (RollCount, GameMode, GameState, ScoreSheet)
-├── utils/              # Utility functions (calculateScore.ts, diceUtils.ts, etc.) - PLANNED
-├── styles/             # CSS files (global.css, variables.css, components.css)
-│   └── global.css      # ✓ CREATED
-├── App.tsx             # ✓ CREATED - Root component with useState
-└── main.tsx            # ✓ CREATED - Entry point
+├── components/              # UI components (10 files)
+│   ├── ModeTab.tsx         # Play/Analysis mode selector
+│   ├── GameHeader.tsx      # Mode icon display
+│   ├── DiceDisplay.tsx     # Dice container
+│   ├── DiceItem.tsx        # Single die with lock state
+│   ├── DiceActions.tsx     # Roll button (play) or roll count radio (analysis)
+│   ├── EvaluationButton.tsx # Trigger evaluation API
+│   ├── EvaluationPanel.tsx # Results panel with AI recommendations
+│   ├── ScoreSheet.tsx      # Main scoring table
+│   ├── ScoreRow.tsx        # Single role row
+│   └── ScoreCell.tsx       # Single cell (score/buttons)
+├── hooks/                   # Custom React hooks
+│   └── useEvaluation.ts    # ✓ Hook for API calls (loading/error state)
+├── context/                 # State management
+│   ├── GameContext.tsx     # ✓ Context provider with useReducer
+│   └── gameReducer.ts      # ✓ Game action handlers
+├── types/                   # TypeScript definitions
+│   ├── game.ts             # ✓ GameState, ScoreSheet, RollCount, GameMode
+│   ├── api.ts              # ✓ API request/response types
+│   └── ui.ts               # UI-specific types
+├── utils/                   # Utility functions
+│   ├── api.ts              # ✓ API client (evaluateMove)
+│   └── calculateScore.ts   # ✓ Score calculation logic for all roles
+├── constants/              # Constants
+│   ├── categories.ts       # ✓ Category definitions (upper/lower roles)
+│   └── dice.ts             # ✓ Dice dot notation mappings
+├── styles/                 # CSS files
+│   ├── global.css          # ✓ Global styles, layout, animations
+│   └── variables.css       # Color/size variables
+├── App.tsx                 # ✓ Root component (GameProvider wrapper)
+└── main.tsx                # ✓ Entry point
 ```
 
-**Current Status** (as of latest commit): Phase 1-3 partially complete. Core UI components exist (ModeTab, GameHeader, DiceDisplay, DiceItem, DiceActions, Layout). Next: Implement ScoreSheet component and state handlers.
+**Completion Status**:
+- ✓ Phases 1-6: Complete (UI components, state management, game logic)
+- 🔄 Phase 7: In progress (styling refinements, responsive design)
+- 📚 See `docs/phase7_completion_checklist.md` for remaining tasks
 
 ## Critical Architecture Concepts
 
@@ -269,37 +291,73 @@ setGameState({ ...gameState, dice: [5, ...gameState.dice.slice(1)] });
 
 ### State Management Pattern
 
-**Current approach**: Game state lives in `App.tsx` (`useState`) and is passed down via props to `Layout`. This is appropriate for the early phases and keeps the app simple.
-
-**When Context is needed**: As the component tree grows, use React Context (in `context/GameContext.tsx`) for deeply nested consumers (e.g., evaluation panel, scoresheet). Context should wrap `Layout` in `App.tsx`:
+**Current approach** (already implemented):
+- Game state lives in `context/GameContext.tsx` using `useReducer`
+- `GameProvider` wraps the entire app in `App.tsx`
+- All components access state via `useGame()` hook from GameContext
+- Game logic actions are dispatched through the reducer (`gameReducer.ts`)
 
 ```typescript
-// App.tsx - Add context provider when needed
-<GameProvider gameState={gameState} setGameState={setGameState}>
-  <Layout />
-</GameProvider>
+// Any component can access and dispatch actions:
+const { gameState, dispatch } = useGame();
+
+dispatch({
+  type: 'CONFIRM_SCORE',
+  payload: { category: 'ace', value: 5 }
+});
 ```
 
-**Rule of thumb**:
-
-- Props are fine for 2-3 levels of nesting
-- Use Context when passing through >3 intermediate components
-- Keep state as low in the tree as possible (don't put everything in Context)
+**Why this architecture**:
+- Centralizes all game logic in one place (`gameReducer.ts`)
+- Avoids "prop drilling" through nested components
+- Makes state changes predictable and debuggable
+- Easier to add features like undo/redo, replay, or auto-save
 
 ## Documentation Files
 
+- **`docs/instruction_rules.md`**: Teaching approach and principles for this learning project
 - **`docs/yacht-rules.md`**: Complete Yacht game rules and role descriptions
 - **`docs/yacht_evaluation_app_design.md`**: Detailed UI/UX specification
 - **`docs/implementation_plan.md`**: 7-phase implementation roadmap with learning points
+- **`docs/phase7_completion_checklist.md`**: Current Phase 7 tasks and status
+- **`docs/phase8_next_steps.md`**: Post-completion learning paths (A/B/C options)
 - **`docs/README_backend.md`**: Backend API and evaluation logic reference
+
+## Game State Reducer Pattern
+
+The `gameReducer.ts` file contains all state transition logic as pure functions. This is critical for understanding how the game works:
+
+```typescript
+// Example action types in gameReducer
+type GameAction =
+  | { type: 'ROLL_DICE'; payload: { lockedIndices: number[] } }
+  | { type: 'TOGGLE_LOCK'; payload: { index: number } }
+  | { type: 'CONFIRM_SCORE'; payload: { category: string; value: number } }
+  | { type: 'SET_ANALYSIS_ROLLCOUNT'; payload: RollCount }
+  // ... other actions
+```
+
+**When adding features**:
+1. Define the action type in `GameAction` union
+2. Add the handler in the reducer switch statement
+3. Ensure the handler returns a new state object (immutable)
+4. Dispatch from components via `dispatch({ type: '...', payload: {...} })`
+
+**Important**: The reducer is a pure function—it should never:
+- Call APIs or side effects
+- Mutate the input state object
+- Make random decisions (use `Math.random()`)
+
+For API calls and side effects, use the `useEvaluation` hook or dispatch after the API completes.
 
 ## Development Workflow
 
 1. **Before editing**: Read relevant files in `src/types/` to understand data structures
-2. **TypeScript first**: Define types before implementing logic
+2. **Understand the game state**: Read `gameReducer.ts` first to see available actions
 3. **Component isolation**: Keep components focused on single responsibilities
-4. **Test in browser**: Use `bun run dev` and React DevTools to verify state flow
-5. **Check linting**: Run `bun run lint` before committing
+4. **Use React DevTools**: Verify state changes via Context tab in Chrome DevTools
+5. **Test in browser**: Use `bun run dev` and check console for errors
+6. **Check linting**: Run `bun run lint` before committing
 
 ## Common Debugging
 
@@ -323,6 +381,48 @@ setGameState({ ...gameState, dice: [5, ...gameState.dice.slice(1)] });
 4. **Dice locking in Play mode**: When rolling dice, only unlock the non-locked dice. The `lockedDice` array must have the same length as `dice` (5 elements).
 
 5. **API call timing**: Only call the evaluate API when `rollCount > 0`. Validate this in the component before making requests.
+
+6. **Reducer immutability**: When updating arrays or objects in the reducer, always create a new object/array. Don't mutate the state directly:
+   ```typescript
+   // ❌ Wrong
+   state.dice[0] = 5;
+
+   // ✅ Correct
+   return { ...state, dice: [5, ...state.dice.slice(1)] };
+   ```
+
+7. **useGame outside GameProvider**: The `useGame()` hook will throw an error if called outside the `GameProvider`. Always check the component tree to ensure it's wrapped properly.
+
+8. **Calculation functions are pure**: Functions in `calculateScore.ts` take the current game state and return calculated values. They don't mutate state or have side effects. Use them during render or when dispatching calculated results.
+
+## Working on Phase 7: Styling & Polish
+
+Phase 7 focuses on UI refinements, responsive design, and accessibility. **Current focus areas**:
+
+### Section B: Fine-Tuning Component Styles
+- Improve ModeTab styling (blue/orange for active states)
+- Enhance button hover/active states with shadows and transforms
+- Refine EvaluationPanel layout and spacing
+- Custom radio button styling for roll count selection
+
+**Testing**: Use `bun run dev` and Chrome DevTools to test:
+- Hover effects (should see shadow/color changes)
+- Focus states (Tab key navigation)
+- Mobile responsiveness (toggle Device Toolbar in DevTools)
+
+### Section C: Responsive Design
+- Mobile (<768px): Adjust padding, font sizes, component widths
+- Tablet (768-1024px): 400px panel width
+- Desktop (1024px+): 450-500px panel width
+- Ensure all buttons are ≥44x44px for touch targets
+
+### Section E: Accessibility
+- Add `aria-label` attributes to buttons
+- Add `scope` attributes to table headers
+- Verify Tab key navigates through all interactive elements
+- Test with Lighthouse (target: 90+ Accessibility score)
+
+**See `docs/phase7_completion_checklist.md`** for the full checklist and priority breakdown.
 
 ## Important Constraints
 
