@@ -278,6 +278,38 @@ input[type='number'] {
   background-color: #f9fafb;
   border-radius: 6px;
   border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.evaluation-choice:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d4db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.evaluation-choice span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #375151;
+}
+
+.evaluation-choice button {
+  align-self: flex-end;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.evaluation-choice button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
 }
 
 .choice-description {
