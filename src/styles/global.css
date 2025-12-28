@@ -438,14 +438,18 @@ input[type='number'] {
 }
 
 .evaluation-choice span {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: #375151;
 }
 
+.evaluation-choice span.evaluation-panel-dice {
+  font-size: 24px;
+}
+
 .evaluation-choice button {
   padding: 8px 16px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: white;
   border: none;

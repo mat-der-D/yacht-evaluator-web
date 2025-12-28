@@ -60,6 +60,19 @@ const createMessageFromDiceToHold = (diceToHold: number[]): string => {
     : `${diceToHold.map((face) => DICE_SYMBOLS[face]).join('')}を残す`;
 };
 
+const createDiceToHoldComponent = (diceToHold: number[]) => {
+  if (diceToHold.length == 0) {
+    return <span>すべて振り直す</span>;
+  } else {
+    const diceMessage = diceToHold.map((face) => DICE_SYMBOLS[face]).join('');
+    return (
+      <span>
+        <span className="evaluation-panel-dice">{diceMessage}</span> を残す
+      </span>
+    );
+  }
+};
+
 const createExpectedValueMessage = (choice: Choice): string => {
   return `期待値 ${choice.expectedValue.toFixed(2)} 点`;
 };
@@ -69,7 +82,7 @@ function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
     <div className="evaluation-choice">
       {choice.choiceType === 'dice' ? (
         <>
-          <span>{createMessageFromDiceToHold(choice.diceToHold!)}</span>
+          {createDiceToHoldComponent(choice.diceToHold!)}
           <span>{createExpectedValueMessage(choice)}</span>
           <button onClick={() => onApply(choice)}>適用</button>
         </>
