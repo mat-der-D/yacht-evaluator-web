@@ -55,7 +55,7 @@ export default function ScoreRow({ categoryKey, label }: ScoreRowProps) {
         potentialScore={potentialScore}
         isConfirmed={isConfirmed}
       />
-      <td>
+      <td className="score-action">
         <button
           disabled={isConfirmButtonDisabled}
           onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet)}
