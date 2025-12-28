@@ -185,8 +185,9 @@ button {
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px #00000026;
+  border: 1px solid #d1d5db;
+  background-color: white;
 }
 
 .score-sheet tr {
@@ -255,20 +256,20 @@ button {
 }
 
 /* プレイモード */
-.layout--play .score-sheet button {
+.layout--play .score-sheet button:not(:disabled) {
   background-color: #3b82f6;
 }
 
-.layout--play .score-sheet button:hover {
+.layout--play .score-sheet button:not(:disabled):hover {
   background-color: #2563eb;
 }
 
 /* 解析モード */
-.layout--analysis .score-sheet button {
+.layout--analysis .score-sheet button:not(:disabled) {
   background-color: #f97316;
 }
 
-.layout--analysis .score-sheet button:hover {
+.layout--analysis .score-sheet button:not(:disabled):hover {
   background-color: #ea580c;
 }
 
@@ -311,13 +312,13 @@ input[type='number'] {
 
 .score-cell-input:hover {
   border-color: #d1d5db;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px #0000000d;
 }
 
 .score-cell-input:focus {
   outline: none;
   border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px #3b82f61a;
   background-color: #f0f7ff;
 }
 
@@ -332,7 +333,7 @@ input[type='number'] {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00000080;
   z-index: 999;
 }
 
@@ -342,7 +343,7 @@ input[type='number'] {
   top: 0;
   bottom: 0;
   width: 400px;
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  box-shadow: -2px 0 8px #00000026;
   display: flex;
   flex-direction: column;
   animation: slideIn 0.3s ease;
@@ -417,7 +418,7 @@ input[type='number'] {
 .evaluation-choice:hover {
   background-color: #f3f4f6;
   border-color: #d1d4db;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px #0000000d;
 }
 
 .evaluation-choice span {
@@ -439,25 +440,25 @@ input[type='number'] {
 }
 
 /* プレイモード */
-.evaluation-panel--play .evaluation-choice button {
+.evaluation-panel--play .evaluation-choice button:not(:disabled) {
   background-color: #3b82f6;
 }
 
-.evaluation-panel--play .evaluation-choice button:hover {
+.evaluation-panel--play .evaluation-choice button:not(:disabled):hover {
   background-color: #2563eb;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 2px 8px #3b82f633;
 }
 
 /* 解析モード */
-.evaluation-panel--analysis .evaluation-choice button {
+.evaluation-panel--analysis .evaluation-choice button:not(:disabled) {
   background-color: #f97316;
 }
 
-.evaluation-panel--analysis .evaluation-choice button:hover {
+.evaluation-panel--analysis .evaluation-choice button:not(:disabled):hover {
   background-color: #ea580c;
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 2px 8px #f9731633;
 }
 
 .choice-description {
@@ -526,7 +527,7 @@ input[type='number'] {
   background-color: #3b82f6;
   /* 青 */
   color: white;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 2px 8px #3b82f64d;
 }
 
 /* アクティブ状態（解析モード） */
@@ -534,7 +535,7 @@ input[type='number'] {
   background-color: #f97316;
   /* オレンジ */
   color: white;
-  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 2px 8px #f973164d;
 }
 
 /* スマートフォン対応（480px 以下） */
@@ -633,35 +634,35 @@ input[type='number'] {
 }
 
 /* プレイモード */
-.evaluation-button--play {
+.evaluation-button--play:not(:disabled) {
   background-color: #3b82f6;
 }
 
 .evaluation-button--play:hover:not(:disabled) {
   background-color: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px #3b82f64d;
 }
 
 .evaluation-button--play:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 2px 6px #3b82f633;
 }
 
 /* 解析モード */
-.evaluation-button--analysis {
+.evaluation-button--analysis:not(:disabled) {
   background-color: #f97316;
 }
 
 .evaluation-button--analysis:hover:not(:disabled) {
   background-color: #ea580c;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 12px #f973164d;
 }
 
 .evaluation-button--analysis:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 2px 6px #f9731633;
 }
 
 .evaluation-button:disabled {
