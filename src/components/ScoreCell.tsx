@@ -20,8 +20,9 @@ export default function ScoreCell({
   const isSpecialRow = ['total', 'bonus', 'upperTotal'].includes(categoryKey);
   const createInputElement = () => (
     <input
+      className="score-cell-input"
       type="number"
-      value={scoreSheet[categoryKey as keyof ScoreSheet] ?? '-'}
+      value={scoreSheet[categoryKey as keyof ScoreSheet] ?? ''}
       onChange={(e) => {
         const inputValue = e.target.value;
         const numValue = inputValue === '' ? null : parseInt(inputValue);
