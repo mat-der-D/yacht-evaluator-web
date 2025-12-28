@@ -3,10 +3,9 @@ import Header from '../components/Header.astro';
 
 interface Props {
   title: string;
-  description?: string;
 }
 
-const { title, description = 'Yacht Dice Game Evaluator - Play and analyze Yacht game with AI-powered recommendations' } = Astro.props;
+const { title } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -15,18 +14,14 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   </head>
   <body>
     <Header currentPath={currentPath} />
-    <main>
+    <main class="app-main">
       <slot />
     </main>
-    <footer class="site-footer">
-      <p>&copy; 2025 Yacht Evaluator. All rights reserved.</p>
-    </footer>
   </body>
 </html>
 
@@ -41,15 +36,7 @@ const currentPath = Astro.url.pathname;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  main {
-    min-height: calc(100vh - 180px);
-  }
-
-  .site-footer {
-    background-color: #f9fafb;
-    border-top: 1px solid #e5e7eb;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    color: #6b7280;
+  .app-main {
+    min-height: calc(100vh - 73px);
   }
 </style>

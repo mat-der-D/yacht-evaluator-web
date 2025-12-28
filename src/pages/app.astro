@@ -1,19 +1,11 @@
 ---
+import AppLayout from '../layouts/AppLayout.astro';
 import App from '../app/App';
 import '../app/styles/global.css';
 ---
 
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yacht Evaluator - App</title>
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  </head>
-  <body>
-    <div id="root">
-      <App client:only="react" />
-    </div>
-  </body>
-</html>
+<AppLayout title="Yacht Evaluator - App">
+  <div id="root">
+    <App client:only="react" />
+  </div>
+</AppLayout>
