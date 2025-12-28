@@ -85,13 +85,13 @@ function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
         <>
           {createDiceToHoldComponent(choice.diceToHold!)}
           <span>{createExpectedValueMessage(choice)}</span>
-          {gameState.mode === 'play' && <button onClick={() => onApply(choice)}>適用</button>}
+          {gameState.mode === 'play' && <button onClick={() => onApply(choice)}>🔒</button>}
         </>
       ) : (
         <>
           <span>{CATEGORY_LABELS[choice.category as CategoryKey]}確定</span>
           <span>{createExpectedValueMessage(choice)}</span>
-          <button onClick={() => onConfirm(choice)}>確定</button>
+          <button onClick={() => onConfirm(choice)}>✓</button>
         </>
       )}
     </div>

@@ -457,6 +457,11 @@ input[type='number'] {
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* プレイモード */

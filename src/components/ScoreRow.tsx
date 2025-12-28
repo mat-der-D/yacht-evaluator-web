@@ -60,7 +60,7 @@ export default function ScoreRow({ categoryKey, label }: ScoreRowProps) {
           disabled={isConfirmButtonDisabled}
           onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet)}
         >
-          確定
+          ✓
         </button>
       </td>
     </tr>
