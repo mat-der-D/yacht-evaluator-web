@@ -34,6 +34,7 @@ export default function Layout() {
       }
     }
     dispatch({ type: 'APPLY_DICE_LOCK', payload: newLockedDice });
+    setEvaluationPanelOpen(false)
   };
 
   // EvaluationPanel の [確定] ボタンが呼ぶハンドラー
@@ -43,6 +44,7 @@ export default function Layout() {
       type: 'CONFIRM_SCORE',
       payload: choice.category!,
     });
+    setEvaluationPanelOpen(false)
   };
 
   return (
