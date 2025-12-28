@@ -3,6 +3,7 @@ import GameHeader from './GameHeader';
 import DiceDisplay from './DiceDisplay';
 import DiceActions from './DiceActions';
 import ScoreSheet from './ScoreSheet';
+import EvaluationButton from './EvaluationButton';
 
 export default function Layout() {
   return (
@@ -11,7 +12,7 @@ export default function Layout() {
       <GameHeader />
       <DiceDisplay />
       <DiceActions />
-      {/*<EvaluationButton></EvaluationButton>*/}
+      <EvaluationButton></EvaluationButton>
       <ScoreSheet></ScoreSheet>
     </div>
   );
