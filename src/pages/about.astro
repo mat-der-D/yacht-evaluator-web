@@ -10,9 +10,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <section class="section">
         <h2>このツールについて</h2>
         <p>
-          ヨットで遊びながら、AIに最善手を聞けるツールです。
-          初めての方はAIのおすすめを参考にしながら上達でき、
-          腕に自信のある方は期待値を見ながら自分の判断と比べられます。
+          ヨットで遊びながら、最善手を確認できるツールです。
+          全パターンの期待値を事前計算しているので、正確な最善手がわかります。
+          初めての方は参考にしながら上達でき、腕に自信のある方は自分の判断と比べられます。
         </p>
       </section>
 
@@ -26,7 +26,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <li><strong>サイコロを振る:</strong> ボタンを押すとサイコロが振られます（1ターン最大3回）</li>
             <li><strong>キープする:</strong> サイコロをタップすると🔒マークが付き、次に振っても変わりません</li>
             <li><strong>役を決める:</strong> 得点を入れたい役の「確定」ボタンを押します</li>
-            <li><strong>AIに聞く:</strong> 「評価を見る」ボタンで、今の場面でのおすすめを教えてもらえます</li>
+            <li><strong>評価を見る:</strong> 「評価を見る」ボタンで、今の場面での最善手を確認できます</li>
           </ul>
         </div>
 
@@ -42,8 +42,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="feature-detail">
-          <h3>📊 AI評価</h3>
-          <p>AIが期待値を計算して、おすすめの手を教えてくれます。</p>
+          <h3>📈 評価機能</h3>
+          <p>全パターンの期待値を事前計算済み。正確な最善手がわかります。</p>
           <ul>
             <li>どのサイコロをキープすべきか</li>
             <li>どの役に入れるべきか</li>
@@ -64,7 +64,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <ul>
                 <li>普通にゲームを遊ぶ</li>
                 <li>サイコロはランダム</li>
-                <li>AIのおすすめを参考にできる</li>
+                <li>最善手を参考にできる</li>
                 <li>初めての方向け</li>
               </ul>
             </div>
@@ -101,12 +101,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="guide-step">
-          <h3>3. AIに相談する</h3>
+          <h3>3. 評価を確認する</h3>
           <ol>
             <li>「評価を見る」ボタンを押す</li>
             <li>右からパネルが出てくる</li>
-            <li>期待値の高い順におすすめが表示される</li>
-            <li>遊ぶモードでは「適用」ボタンでおすすめをそのまま使える</li>
+            <li>期待値の高い順に選択肢が表示される</li>
+            <li>遊ぶモードでは「適用」ボタンでそのまま使える</li>
           </ol>
         </div>
 
@@ -134,7 +134,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="faq-item">
             <h4>Q: 分析モードは何に使う？</h4>
-            <p>A: 「この場面ではどうするのが正解だったんだろう？」を調べるときに便利です。サイコロやスコアを自由に設定して、AIの判断を確認できます。</p>
+            <p>A: 「この場面ではどうするのが正解だったんだろう？」を調べるときに便利です。サイコロやスコアを自由に設定して、最善手を確認できます。</p>
           </div>
           <div class="faq-item">
             <h4>Q: 期待値って何？</h4>
