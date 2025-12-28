@@ -26,7 +26,10 @@ export default function EvaluationPanel({
 
   return (
     <div className="evaluation-panel-overlay" onClick={onClose}>
-      <div className={`evaluation-panel evaluation-panel--${gameState.mode}`} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`evaluation-panel evaluation-panel--${gameState.mode}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="evaluation-panel-header">
           <h2>{error ? 'エラー' : '評価値'}</h2>
           <button onClick={onClose}>×</button>
@@ -51,22 +54,36 @@ interface ChoiceItemProps {
   onConfirm: (choice: Choice) => void;
 }
 
+const createMessageFromDiceToHold = (diceToHold: number[]): string => {
+  return diceToHold.length == 0
+    ? 'すべて振り直す'
+    : `${diceToHold.map((face) => DICE_SYMBOLS[face]).join('')}を残す`;
+};
+
+const createExpectedValueMessage = (choice: Choice): string => {
+  return `期待値 ${choice.expectedValue.toFixed(2)} 点`;
+};
+
 function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
   return (
     <div className="evaluation-choice">
       {choice.choiceType === 'dice' ? (
         <>
           <span>
-            {/* TODO: 何も残さないときの書き方を工夫する */}
-            {choice.diceToHold?.map((face) => DICE_SYMBOLS[face]).join(' ')} - EV:{' '}
-            {choice.expectedValue}
+            {createMessageFromDiceToHold(choice.diceToHold!)}
+          </span>
+          <span>
+            {createExpectedValueMessage(choice)}
           </span>
           <button onClick={() => onApply(choice)}>適用</button>
         </>
       ) : (
         <>
           <span>
-            {CATEGORY_LABELS[choice.category as CategoryKey]} - EV: {choice.expectedValue}
+            {CATEGORY_LABELS[choice.category as CategoryKey]}確定
+          </span>
+          <span>
+            {createExpectedValueMessage(choice)}
           </span>
           <button onClick={() => onConfirm(choice)}>確定</button>
         </>

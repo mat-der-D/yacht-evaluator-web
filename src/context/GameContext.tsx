@@ -1,9 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { useContext, useReducer } from 'react';
-import {
-  initialGameState,
-  type GameState,
-} from '../types/game';
+import { initialGameState, type GameState } from '../types/game';
 import { gameReducer, type GameAction } from './gameReducer';
 
 const GameContext = React.createContext<

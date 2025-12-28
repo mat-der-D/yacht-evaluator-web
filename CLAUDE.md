@@ -76,6 +76,7 @@ src/
 ```
 
 **Completion Status**:
+
 - ✓ Phases 1-6: Complete (UI components, state management, game logic)
 - 🔄 Phase 7: In progress (styling refinements, responsive design)
 - 📚 See `docs/phase7_completion_checklist.md` for remaining tasks
@@ -292,6 +293,7 @@ setGameState({ ...gameState, dice: [5, ...gameState.dice.slice(1)] });
 ### State Management Pattern
 
 **Current approach** (already implemented):
+
 - Game state lives in `context/GameContext.tsx` using `useReducer`
 - `GameProvider` wraps the entire app in `App.tsx`
 - All components access state via `useGame()` hook from GameContext
@@ -303,11 +305,12 @@ const { gameState, dispatch } = useGame();
 
 dispatch({
   type: 'CONFIRM_SCORE',
-  payload: { category: 'ace', value: 5 }
+  payload: { category: 'ace', value: 5 },
 });
 ```
 
 **Why this architecture**:
+
 - Centralizes all game logic in one place (`gameReducer.ts`)
 - Avoids "prop drilling" through nested components
 - Makes state changes predictable and debuggable
@@ -333,17 +336,19 @@ type GameAction =
   | { type: 'ROLL_DICE'; payload: { lockedIndices: number[] } }
   | { type: 'TOGGLE_LOCK'; payload: { index: number } }
   | { type: 'CONFIRM_SCORE'; payload: { category: string; value: number } }
-  | { type: 'SET_ANALYSIS_ROLLCOUNT'; payload: RollCount }
-  // ... other actions
+  | { type: 'SET_ANALYSIS_ROLLCOUNT'; payload: RollCount };
+// ... other actions
 ```
 
 **When adding features**:
+
 1. Define the action type in `GameAction` union
 2. Add the handler in the reducer switch statement
 3. Ensure the handler returns a new state object (immutable)
 4. Dispatch from components via `dispatch({ type: '...', payload: {...} })`
 
 **Important**: The reducer is a pure function—it should never:
+
 - Call APIs or side effects
 - Mutate the input state object
 - Make random decisions (use `Math.random()`)
@@ -383,6 +388,7 @@ For API calls and side effects, use the `useEvaluation` hook or dispatch after t
 5. **API call timing**: Only call the evaluate API when `rollCount > 0`. Validate this in the component before making requests.
 
 6. **Reducer immutability**: When updating arrays or objects in the reducer, always create a new object/array. Don't mutate the state directly:
+
    ```typescript
    // ❌ Wrong
    state.dice[0] = 5;
@@ -400,23 +406,27 @@ For API calls and side effects, use the `useEvaluation` hook or dispatch after t
 Phase 7 focuses on UI refinements, responsive design, and accessibility. **Current focus areas**:
 
 ### Section B: Fine-Tuning Component Styles
+
 - Improve ModeTab styling (blue/orange for active states)
 - Enhance button hover/active states with shadows and transforms
 - Refine EvaluationPanel layout and spacing
 - Custom radio button styling for roll count selection
 
 **Testing**: Use `bun run dev` and Chrome DevTools to test:
+
 - Hover effects (should see shadow/color changes)
 - Focus states (Tab key navigation)
 - Mobile responsiveness (toggle Device Toolbar in DevTools)
 
 ### Section C: Responsive Design
+
 - Mobile (<768px): Adjust padding, font sizes, component widths
 - Tablet (768-1024px): 400px panel width
 - Desktop (1024px+): 450-500px panel width
 - Ensure all buttons are ≥44x44px for touch targets
 
 ### Section E: Accessibility
+
 - Add `aria-label` attributes to buttons
 - Add `scope` attributes to table headers
 - Verify Tab key navigates through all interactive elements

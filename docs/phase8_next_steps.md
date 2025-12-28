@@ -22,20 +22,24 @@ Yacht Dice Game Evaluator Web App は**機能的に完成**しました。
 #### A-1: アクセシビリティ対応（所要時間：2～3 時間）
 
 **内容**:
+
 - ARIA 属性を追加（`aria-label`, `role` など）
 - キーボードナビゲーション対応
 - スクリーンリーダー対応
 - カラーコントラスト確認（WCAG AA 準拠）
 
 **ファイル**:
+
 - `src/components/` 各コンポーネント
 
 **参考**:
+
 ```bash
 bun run build  # Lighthouse でアクセシビリティスコア確認
 ```
 
 **メリット**:
+
 - より多くのユーザーに対応
 - Web 標準に準拠
 - SEO 向上
@@ -45,19 +49,20 @@ bun run build  # Lighthouse でアクセシビリティスコア確認
 #### A-2: CSS 変数化と整理（所要時間：1～2 時間）
 
 **内容**:
+
 ```css
 :root {
   /* 色 */
   --color-primary-blue: #3b82f6;
   --color-primary-orange: #f97316;
   --color-bg-light: #f3f4f6;
-  
+
   /* スペーシング */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 12px;
   --spacing-lg: 16px;
-  
+
   /* サイズ */
   --touch-target: 44px;
   --border-radius-sm: 4px;
@@ -66,11 +71,13 @@ bun run build  # Lighthouse でアクセシビリティスコア確認
 ```
 
 **メリット**:
+
 - コード保守性向上
 - デザイン変更が容易
 - ダークモード対応への第一歩
 
 **参考リソース**:
+
 - [MDN: CSS カスタムプロパティ](https://developer.mozilla.org/ja/docs/Web/CSS/--*)
 
 ---
@@ -78,18 +85,21 @@ bun run build  # Lighthouse でアクセシビリティスコア確認
 #### A-3: パフォーマンス最適化（所要時間：2～3 時間）
 
 **確認方法**:
+
 ```bash
 bun run build
 # DevTools → Lighthouse → Performance スコア確認
 ```
 
 **最適化項目**:
+
 - バンドルサイズの削減
 - 画像最適化（PNG → WebP など）
 - Code Splitting
 - Lazy Loading
 
 **現在のスコア目標**:
+
 - Performance: 90 以上
 - Accessibility: 90 以上
 - Best Practices: 90 以上
@@ -100,15 +110,18 @@ bun run build
 #### A-4: テスト自動化（所要時間：4～6 時間）
 
 **推奨ツール**:
+
 - **ユニットテスト**: Vitest
 - **E2E テスト**: Playwright / Cypress
 
 **テスト対象**:
+
 - `calculateScore.ts` 各関数
 - `gameReducer` の各 action
 - UI 流れ（ダイス操作 → 確定 → 次のロール）
 
 **参考**:
+
 ```bash
 # セットアップ例
 bun add -D vitest @vitest/ui
@@ -124,12 +137,14 @@ bun add -D @playwright/test
 #### B-1: Next.js でフルスタック化（所要時間：8～12 時間）
 
 **何を学ぶ**:
+
 - サーバーサイド React
 - API ルート実装
 - データベース連携
 - SSR / SSG
 
 **実装例**:
+
 ```typescript
 // pages/api/evaluate.ts
 export default function handler(req, res) {
@@ -140,6 +155,7 @@ export default function handler(req, res) {
 ```
 
 **参考**:
+
 - [Next.js 公式ドキュメント](https://nextjs.org/docs)
 
 ---
@@ -151,6 +167,7 @@ Context API から次のステップへ：
 **Redux** / **Zustand** / **Jotai**
 
 **メリット**:
+
 - DevTools で状態遷移を視覚化
 - ミドルウェア対応
 - タイムトラベルデバッグ
@@ -170,12 +187,14 @@ const useGameStore = create((set) => ({
 #### B-3: TypeScript 上級技法（所要時間：6～8 時間）
 
 **習得すべき概念**:
+
 - Generics（ジェネリクス）
 - Conditional Types
 - Utility Types
 - 型安全な API クライアント
 
 **実装例**:
+
 ```typescript
 // API レスポンスの型を自動生成
 type Choice<T extends 'dice' | 'category'> = T extends 'dice'
@@ -184,6 +203,7 @@ type Choice<T extends 'dice' | 'category'> = T extends 'dice'
 ```
 
 **参考**:
+
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 
 ---
@@ -195,6 +215,7 @@ type Choice<T extends 'dice' | 'category'> = T extends 'dice'
 #### C-1: LocalStorage で履歴保存（所要時間：2～3 時間）
 
 **実装**:
+
 ```typescript
 // ゲーム終了時に保存
 localStorage.setItem('gameHistory', JSON.stringify(finalScores));
@@ -204,6 +225,7 @@ const history = JSON.parse(localStorage.getItem('gameHistory') || '[]');
 ```
 
 **追加機能**:
+
 - 過去のゲーム結果表示
 - スコア比較
 - 平均スコア計算
@@ -213,6 +235,7 @@ const history = JSON.parse(localStorage.getItem('gameHistory') || '[]');
 #### C-2: ダークモード対応（所要時間：3～4 時間）
 
 **実装**:
+
 ```css
 :root {
   --bg-primary: #ffffff;
@@ -228,6 +251,7 @@ const history = JSON.parse(localStorage.getItem('gameHistory') || '[]');
 ```
 
 **React 実装**:
+
 ```typescript
 const [isDark, setIsDark] = useState(false);
 
@@ -243,6 +267,7 @@ return (
 #### C-3: マルチプレイヤーモード（所要時間：6～8 時間）
 
 **実装構想**:
+
 ```typescript
 interface GameRoom {
   id: string;
@@ -253,6 +278,7 @@ interface GameRoom {
 ```
 
 **必要な技術**:
+
 - WebSocket で多人数対応
 - ターン管理ロジック
 - スコア集計機能
@@ -262,6 +288,7 @@ interface GameRoom {
 #### C-4: ユーザー認証（所要時間：4～6 時間）
 
 **推奨**:
+
 - Firebase Authentication
 - または Auth0
 
@@ -278,6 +305,7 @@ const user = await signInWithGoogle();
 #### C-5: プレイスタイル分析（所要時間：4～6 時間）
 
 **実装**:
+
 ```typescript
 interface PlayerStats {
   totalGames: number;
@@ -288,13 +316,14 @@ interface PlayerStats {
 ```
 
 **レコメンド機能**:
+
 - プレイヤーの傾向分析
 - 推奨戦略の提示
 - 相性の良いプレイスタイル提示
 
 ---
 
-## 📚  推奨学習順序
+## 📚 推奨学習順序
 
 ```
 初心者向け（3～4 時間/週）
@@ -323,6 +352,7 @@ interface PlayerStats {
 ### **推奨: A-1（アクセシビリティ対応）**
 
 理由:
+
 1. **現在のコードを活かせる**（新技術不要）
 2. **ユーザー体験が向上する**
 3. **モダン Web 開発の標準**
@@ -350,20 +380,24 @@ bunx create-next-app@latest yacht-evaluator --typescript
 ## 📖 参考リソース
 
 ### **公式ドキュメント**
+
 - [React 公式](https://react.dev)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [MDN Web Docs](https://developer.mozilla.org/ja/)
 - [Vite ドキュメント](https://vitejs.dev/)
 
 ### **アクセシビリティ**
+
 - [WCAG 2.1 ガイドライン](https://waic.jp/translations/WCAG21/)
 - [ARIA オーサリングプラクティス](https://www.w3.org/WAI/ARIA/apg/)
 
 ### **CSS**
+
 - [CSS Tricks](https://css-tricks.com/)
 - [Can I Use](https://caniuse.com/) - ブラウザ互換性確認
 
 ### **パフォーマンス**
+
 - [Web.dev](https://web.dev/) - Google の学習プラットフォーム
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
@@ -376,6 +410,7 @@ bunx create-next-app@latest yacht-evaluator --typescript
    - 各機能を独立してテスト
 
 2. **Git でバージョン管理**
+
    ```bash
    git add .
    git commit -m "feat: add accessibility support"
