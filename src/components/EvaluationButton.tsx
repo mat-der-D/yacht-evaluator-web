@@ -29,7 +29,9 @@ export default function EvaluationButton({
   const isDisabled = isGameFinished || rollCount === 0 || loading;
 
   return (
-    <button disabled={isDisabled} onClick={handleClick}>
+    <button
+      className="evaluation-button"
+      disabled={isDisabled} onClick={handleClick}>
       {loading ? '評価中...' : '評価を見る'}
     </button>
   );
