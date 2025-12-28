@@ -292,3 +292,48 @@ input[type='number'] {
   line-height: 1.6;
   text-align: center;
 }
+
+/* ModeTab スタイル */
+.mode-tab {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mode-tab button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #e5e7eb;
+  flex: 1;
+  /* デフォルト：グレー */
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.mode-tab button:hover {
+  background-color: #d1d5db;
+}
+
+/* アクティブ状態（プレイモード） */
+.mode-tab--play button:first-child {
+  background-color: #3b82f6;
+  /* 青 */
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* アクティブ状態（解析モード） */
+.mode-tab--analysis button:last-child {
+  background-color: #f97316;
+  /* オレンジ */
+  color: white;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
