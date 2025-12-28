@@ -5,6 +5,7 @@ import { CATEGORY_LABELS, type CategoryKey } from '../constants/categories';
 interface EvaluationPanelProps {
   isOpen: boolean;
   choices: Choice[];
+  error?: string | null;
   onClose: () => void;
   onApply: (choice: Choice) => void;
   onConfirm: (choice: Choice) => void;
@@ -13,6 +14,7 @@ interface EvaluationPanelProps {
 export default function EvaluationPanel({
   isOpen,
   choices,
+  error,
   onClose,
   onApply,
   onConfirm,
@@ -23,13 +25,17 @@ export default function EvaluationPanel({
     <div className="evaluation-panel-overlay" onClick={onClose}>
       <div className="evaluation-panel" onClick={(e) => e.stopPropagation()}>
         <div className="evaluation-panel-header">
-          <h2>Results</h2>
+          <h2>{error ? 'Error' : 'Results'}</h2>
           <button onClick={onClose}>[×]</button>
         </div>
         <div className="evaluation-panel-body">
-          {choices.map((choice, index) => (
-            <ChoiceItem key={index} choice={choice} onApply={onApply} onConfirm={onConfirm} />
-          ))}
+          {error ? (
+            <div className="evaluation-error">{error}</div>
+          ) : (
+            choices.map((choice, index) => (
+              <ChoiceItem key={index} choice={choice} onApply={onApply} onConfirm={onConfirm} />
+            ))
+          )}
         </div>
       </div>
     </div>

@@ -8,11 +8,13 @@ import { useGame } from '../context/GameContext';
 import { useState } from 'react';
 import type { Choice } from '../utils/api';
 import EvaluationPanel from './EvaluationPanel';
+import { useEvaluation } from '../hooks/useEvaluation';
 
 export default function Layout() {
   const { gameState, dispatch } = useGame();
   const [evaluationPanelOpen, setEvaluationPanelOpen] = useState(false);
   const [evaluationChoices, setEvaluationChoices] = useState<Choice[]>([]);
+  const { loading, error, evaluate } = useEvaluation();
 
   // EvaluationButton が呼ぶハンドラー
   const handleEvaluationComplete = (choices: Choice[]) => {
@@ -53,12 +55,17 @@ export default function Layout() {
       <GameHeader />
       <DiceDisplay />
       <DiceActions />
-      <EvaluationButton onEvaluationComplete={handleEvaluationComplete} />
+      <EvaluationButton
+        loading={loading}
+        evaluate={evaluate}
+        onEvaluationComplete={handleEvaluationComplete}
+      />
       <ScoreSheet />
 
       <EvaluationPanel
         isOpen={evaluationPanelOpen}
         choices={evaluationChoices}
+        error={error}
         onClose={() => setEvaluationPanelOpen(false)}
         onApply={handleApplyDiceChoice}
         onConfirm={handleConfirmCategoryChoice}
