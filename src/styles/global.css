@@ -130,6 +130,8 @@ button {
 
 .score-sheet tr {
   border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
 }
 
 .score-sheet td {
@@ -138,16 +140,19 @@ button {
 
 .score-label {
   text-align: left;
+  flex: 2;
 }
 
 .score-value {
   text-align: right;
-  width: 100px;
+  flex: 1;
 }
 
 .score-action {
   text-align: center;
-  width: 100px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 /* スコア未確定時の表示 */
@@ -422,8 +427,11 @@ input[type='number'] {
   }
 
   .score-sheet td {
-    padding: 8px;
-    font-size: 14px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .score-sheet button {
