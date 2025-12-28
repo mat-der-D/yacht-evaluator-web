@@ -25,8 +25,8 @@ export default function EvaluationPanel({
     <div className="evaluation-panel-overlay" onClick={onClose}>
       <div className="evaluation-panel" onClick={(e) => e.stopPropagation()}>
         <div className="evaluation-panel-header">
-          <h2>{error ? 'Error' : 'Results'}</h2>
-          <button onClick={onClose}>[×]</button>
+          <h2>{error ? 'エラー' : '評価値'}</h2>
+          <button onClick={onClose}>×</button>
         </div>
         <div className="evaluation-panel-body">
           {error ? (

@@ -179,7 +179,7 @@ button {
 
 /* ボタン */
 .score-sheet button {
-  padding: 6px 28px;
+  padding: 8px 40px;
   background-color: #3b82f6;
   color: white;
   border: none;
@@ -295,7 +295,7 @@ input[type='number'] {
 .evaluation-panel-header button {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 36px;
   cursor: pointer;
   padding: 0;
   width: 30px;
@@ -438,13 +438,13 @@ input[type='number'] {
   .layout {
     max-width: 100%;
     padding: 10px;
-    gap: 15px;
+    gap: 0px;
   }
 
   .dice-item {
-    font-size: 56px;
-    width: 70px;
-    height: 70px;
+    font-size: 50px;
+    width: 55px;
+    height: 55px;
     display: flex;
     align-items: center;
     border-radius: 8px;
@@ -475,7 +475,7 @@ input[type='number'] {
 
   .score-sheet button {
     padding: 8px 20px;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .mode-tab button {
