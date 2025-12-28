@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Yacht Evaluator - ホーム">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>🎲 Yacht Dice Game Evaluator</h1>
+      <p class="tagline">AIを活用したYachtダイスゲームの分析ツール</p>
+      <p class="description">
+        サイコロゲーム「Yacht（ヨット）」を楽しみながら、<br />
+        AIによる最適な手の推薦を受けることができます。
+      </p>
+      <div class="cta-buttons">
+        <a href="/app" class="btn btn-primary">アプリを起動</a>
+        <a href="/rules" class="btn btn-secondary">ルールを見る</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="container">
+      <h2>特徴</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3>プレイモード</h3>
+          <p>実際にサイコロを振って、Yachtゲームを楽しめます。ダイスをロックして戦略的にプレイしましょう。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>分析モード</h3>
+          <p>任意の局面を設定して、AIによる最適な手の推薦を受けることができます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>AI推薦</h3>
+          <p>期待値計算に基づいた最適な戦略を提案。初心者から上級者まで役立ちます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>スコア管理</h3>
+          <p>自動的にスコアを計算し、ボーナスや合計点を表示します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="getting-started">
+    <div class="container">
+      <h2>はじめ方</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>アプリを起動</h3>
+          <p>「アプリを起動」ボタンをクリックしてゲーム画面を開きます。</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>モードを選択</h3>
+          <p>プレイモードか分析モードを選んでください。</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>ゲームを楽しむ</h3>
+          <p>サイコロを振って、最高得点を目指しましょう！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 1.125rem;
+  }
+
+  .btn-primary {
+    background-color: white;
+    color: #667eea;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .features {
+    padding: 4rem 1.5rem;
+    background-color: #f9fafb;
+  }
+
+  .features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #1f2937;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+  }
+
+  .feature-card p {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .getting-started {
+    padding: 4rem 1.5rem;
+  }
+
+  .getting-started h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #1f2937;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .step {
+    text-align: center;
+  }
+
+  .step-number {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+  }
+
+  .step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #1f2937;
+  }
+
+  .step p {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+
+    .features h2,
+    .getting-started h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

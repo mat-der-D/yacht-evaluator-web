@@ -1,0 +1,407 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="ツール解説" description="Yacht Evaluatorの機能と使い方の詳しい解説">
+  <div class="about-container">
+    <div class="container">
+      <h1>🔍 ツール解説</h1>
+
+      <section class="section">
+        <h2>Yacht Evaluatorとは</h2>
+        <p>
+          Yacht Evaluatorは、Yachtダイスゲームをプレイしながら、AIによる最適な手の推薦を受けられるWebアプリケーションです。
+          初心者の方は戦略を学びながらプレイでき、上級者の方は期待値を確認しながら最適解を追求できます。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>主な機能</h2>
+
+        <div class="feature-detail">
+          <h3>🎮 プレイモード</h3>
+          <p>
+            実際にサイコロを振ってゲームを楽しむモードです。
+          </p>
+          <ul>
+            <li><strong>サイコロのロール:</strong> 「Roll Dice」ボタンでサイコロを振ります（1ターンに最大3回）</li>
+            <li><strong>ダイスのロック:</strong> サイコロをクリックしてロック/ロック解除ができます。ロックされたサイコロは次のロールで固定されます</li>
+            <li><strong>役の確定:</strong> 各役の横にある「Confirm」ボタンで得点を確定します</li>
+            <li><strong>AI推薦:</strong> 「📊 Evaluate」ボタンをクリックすると、現在の状況での最適な手を推薦してくれます</li>
+            <li><strong>推薦の適用:</strong> 評価パネルから「Apply」ボタンで推薦されたダイスの組み合わせを適用できます</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail">
+          <h3>🔍 分析モード</h3>
+          <p>
+            任意の局面を設定して、最適な戦略を分析できるモードです。
+          </p>
+          <ul>
+            <li><strong>サイコロの設定:</strong> サイコロをクリックして任意の目に変更できます（1→2→3→4→5→6→1...）</li>
+            <li><strong>ロール回数の設定:</strong> ラジオボタンで現在のロール回数（0〜3回）を設定できます</li>
+            <li><strong>スコアシートの編集:</strong> 各役をクリックして任意の値に設定できます</li>
+            <li><strong>期待値の確認:</strong> 評価ボタンで各選択肢の期待値を確認できます</li>
+          </ul>
+        </div>
+
+        <div class="feature-detail">
+          <h3>📊 評価システム</h3>
+          <p>
+            バックエンドのAIエンジンが期待値計算を行い、最適な戦略を提案します。
+          </p>
+          <ul>
+            <li><strong>ダイスホールド推薦:</strong> どのサイコロをキープすべきかを提案</li>
+            <li><strong>役確定推薦:</strong> どの役を確定すべきかを提案</li>
+            <li><strong>期待値表示:</strong> 各選択肢の期待値を数値で表示</li>
+            <li><strong>ソート済み結果:</strong> 期待値の高い順に推薦を表示</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>使い方ガイド</h2>
+
+        <div class="guide-step">
+          <h3>Step 1: モードの選択</h3>
+          <p>
+            画面上部のタブで「Play」または「Analysis」モードを選択します。
+          </p>
+          <div class="mode-comparison">
+            <div class="mode-card">
+              <h4>🎮 Play モード（青）</h4>
+              <ul>
+                <li>実際にゲームをプレイする</li>
+                <li>ランダムにサイコロが振られる</li>
+                <li>AI推薦を参考にできる</li>
+                <li>初心者におすすめ</li>
+              </ul>
+            </div>
+            <div class="mode-card">
+              <h4>🔍 Analysis モード（オレンジ）</h4>
+              <ul>
+                <li>任意の局面を分析する</li>
+                <li>サイコロの目を自由に設定</li>
+                <li>戦略の研究に最適</li>
+                <li>上級者向け</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <h3>Step 2: サイコロの操作</h3>
+          <div class="instruction-box">
+            <h4>プレイモードの場合</h4>
+            <ol>
+              <li>「Roll Dice」ボタンでサイコロを振る</li>
+              <li>キープしたいサイコロをクリック（🔒アイコンと青枠が表示）</li>
+              <li>再度「Roll Dice」ボタンを押す（ロックされていないサイコロのみ振られる）</li>
+              <li>最大3回まで繰り返せる</li>
+            </ol>
+          </div>
+          <div class="instruction-box">
+            <h4>分析モードの場合</h4>
+            <ol>
+              <li>サイコロをクリックして目を変更</li>
+              <li>ラジオボタンでロール回数を選択（0〜3回）</li>
+              <li>スコアシートの値も自由に設定可能</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <h3>Step 3: 評価の利用</h3>
+          <ol>
+            <li>「📊 Evaluate」ボタンをクリック</li>
+            <li>右側にパネルがスライドして表示される</li>
+            <li>期待値の高い順に推薦が表示される</li>
+            <li>プレイモードでは「Apply」や「Confirm」ボタンで推薦を適用できる</li>
+            <li>分析モードでは期待値を確認するのみ</li>
+          </ol>
+        </div>
+
+        <div class="guide-step">
+          <h3>Step 4: 役の確定</h3>
+          <ol>
+            <li>各役の行に表示される「(+XX)」はその役を選んだ場合の得点</li>
+            <li>「Confirm」ボタンをクリックして役を確定</li>
+            <li>確定した役は灰色の背景になり、変更できなくなる</li>
+            <li>13種類すべての役が埋まったらゲーム終了</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>技術仕様</h2>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <h4>フロントエンド</h4>
+            <ul>
+              <li>Astro（静的サイト生成）</li>
+              <li>React 19（ゲームUI）</li>
+              <li>TypeScript（型安全性）</li>
+              <li>Bun（パッケージマネージャー）</li>
+            </ul>
+          </div>
+          <div class="tech-item">
+            <h4>状態管理</h4>
+            <ul>
+              <li>React Context API</li>
+              <li>useReducer（ゲームロジック）</li>
+              <li>カスタムフック（API呼び出し）</li>
+            </ul>
+          </div>
+          <div class="tech-item">
+            <h4>バックエンド</h4>
+            <ul>
+              <li>REST API</li>
+              <li>期待値計算エンジン</li>
+              <li>最適戦略アルゴリズム</li>
+            </ul>
+          </div>
+          <div class="tech-item">
+            <h4>スタイリング</h4>
+            <ul>
+              <li>CSS Variables</li>
+              <li>レスポンシブデザイン</li>
+              <li>モバイル対応（最小44x44pxタッチターゲット）</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>よくある質問</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>Q: 評価ボタンが押せません</h4>
+            <p>A: 評価ボタンは、ロール回数が0回の時は無効化されています。まず1回以上サイコロを振ってください。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Q: ボーナスはどうやって獲得できますか？</h4>
+            <p>A: 上段6種類（Ace〜Six）の合計が63点以上になると、自動的に35点のボーナスが加算されます。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Q: 分析モードで何ができますか？</h4>
+            <p>A: 任意のサイコロの目、ロール回数、スコアシートの状態を設定して、その局面での最適な戦略を分析できます。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Q: 期待値とは何ですか？</h4>
+            <p>A: その選択をした場合に、ゲーム終了時に得られると予想される平均的な総得点です。期待値が高いほど有利な選択です。</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-section">
+        <a href="/app" class="btn btn-primary">アプリを起動する</a>
+        <a href="/rules" class="btn btn-secondary">ルールを確認</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .about-container {
+    padding: 2rem 1.5rem 4rem;
+    background-color: #f9fafb;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: #1f2937;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .section {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .section h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 0.5rem;
+  }
+
+  .section h3 {
+    font-size: 1.5rem;
+    color: #374151;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .section h4 {
+    font-size: 1.25rem;
+    color: #4b5563;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .section p {
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 1rem;
+  }
+
+  .section ul,
+  .section ol {
+    line-height: 1.8;
+    color: #4b5563;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-detail {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #3b82f6;
+  }
+
+  .mode-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .mode-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 2px solid #3b82f6;
+  }
+
+  .mode-card:last-child {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-color: #f97316;
+  }
+
+  .guide-step {
+    margin-bottom: 2rem;
+  }
+
+  .instruction-box {
+    background: #eff6ff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3b82f6;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .tech-item {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-top: 3px solid #3b82f6;
+  }
+
+  .faq-list {
+    margin-top: 1rem;
+  }
+
+  .faq-item {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #10b981;
+  }
+
+  .faq-item h4 {
+    color: #059669;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .faq-item p {
+    margin: 0;
+    color: #047857;
+  }
+
+  .cta-section {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 1.125rem;
+  }
+
+  .btn-primary {
+    background-color: #3b82f6;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-secondary {
+    background-color: white;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+  }
+
+  .btn-secondary:hover {
+    background-color: #eff6ff;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .section {
+      padding: 1.5rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+    }
+
+    .section h3 {
+      font-size: 1.25rem;
+    }
+
+    .mode-comparison {
+      grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
