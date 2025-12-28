@@ -1,37 +1,33 @@
 import ScoreRow from './ScoreRow';
+import { CATEGORY_LABELS, type CategoryKey } from '../constants/categories';
+import type { ScoreSheet } from '../types/game';
 
-const upperCategories = [
-  { key: 'ace' as const, label: 'Ace' },
-  { key: 'deuce' as const, label: 'Deuce' },
-  { key: 'trey' as const, label: 'Trey' },
-  { key: 'four' as const, label: 'Four' },
-  { key: 'five' as const, label: 'Five' },
-  { key: 'six' as const, label: 'Six' },
-];
+const categories: CategoryKey[] = [
+  'ace',
+  'deuce',
+  'trey',
+  'four',
+  'five',
+  'six',
+  'upperTotal',
+  'bonus',
+  'choice',
+  'fourOfAKind',
+  'fullHouse',
+  'smallStraight',
+  'bigStraight',
+  'yacht',
+  'total',
+]
 
-const lowerCategories = [
-  { key: 'choice' as const, label: 'Choice' },
-  { key: 'fourOfAKind' as const, label: 'FourOfAKind' },
-  { key: 'fullHouse' as const, label: 'Full House' },
-  { key: 'smallStraight' as const, label: 'Small Straight' },
-  { key: 'bigStraight' as const, label: 'Big Straight' },
-  { key: 'yacht' as const, label: 'Yacht' },
-];
+const keyLabelPairs = categories.map((key) => ({ key, label: CATEGORY_LABELS[key] }))
 
 export default function ScoreSheet() {
   return (
     <div className="score-sheet">
       <table>
         <tbody>
-          {upperCategories.map((cat) => (
-            <ScoreRow categoryKey={cat.key} label={cat.label} />
-          ))}
-          <ScoreRow categoryKey="upperTotal" label="Upper Total" />
-          <ScoreRow categoryKey="bonus" label="Bonus" />
-          {lowerCategories.map((cat) => (
-            <ScoreRow categoryKey={cat.key} label={cat.label} />
-          ))}
-          <ScoreRow categoryKey="total" label="Total" />
+          {keyLabelPairs.map((cat) => (<ScoreRow categoryKey={cat.key} label={cat.label} />))}
         </tbody>
       </table>
     </div>
