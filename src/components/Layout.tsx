@@ -12,7 +12,7 @@ export default function Layout() {
       <GameHeader />
       <DiceDisplay />
       <DiceActions />
-      <EvaluationButton></EvaluationButton>
+      <EvaluationButton />
       <ScoreSheet></ScoreSheet>
     </div>
   );
