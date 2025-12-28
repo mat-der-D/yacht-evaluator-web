@@ -6,6 +6,7 @@ import {
   calculateFinalTotal,
   calculateUpperTotal,
 } from '../utils/calculateScore';
+import ScoreCell from './ScoreCell';
 
 interface ScoreRowProps {
   categoryKey: keyof ScoreSheet | 'upperTotal' | 'bonus' | 'total';
@@ -42,20 +43,25 @@ export default function ScoreRow({ categoryKey, label }: ScoreRowProps) {
 
   const isSpecialRow = ['total', 'bonus', 'upperTotal'].includes(categoryKey);
   const isConfirmed = score !== null;
-  const classNameValue = `score-value ${isConfirmed ? '' : 'score-unconfirmed'}`;
+  const isConfirmButtonDisabled =
+    gameState.mode === 'play' ? isConfirmed || rollCount === 0 : isConfirmed;
 
   return (
     <tr className={isSpecialRow ? 'score-special' : ''}>
       <td className="score-label">{label}</td>
-      <td className={classNameValue}>{isConfirmed ? score : `(+${potentialScore})`}</td>
+      <ScoreCell
+        categoryKey={categoryKey}
+        score={score}
+        potentialScore={potentialScore}
+        isConfirmed={isConfirmed}
+      />
       <td>
-        {rollCount > 0 && score === null && (
-          <button
-            onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet, potentialScore)}
-          >
-            確定
-          </button>
-        )}
+        <button
+          disabled={isConfirmButtonDisabled}
+          onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet, potentialScore)}
+        >
+          確定
+        </button>
       </td>
     </tr>
   );

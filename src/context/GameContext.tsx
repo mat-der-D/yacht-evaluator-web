@@ -14,6 +14,7 @@ type GameAction =
   | { type: 'LOCK_DICE'; payload: number }
   | { type: 'INCREMENT_DICE'; payload: number }
   | { type: 'SET_ROLLCOUNT'; payload: RollCount }
+  | { type: 'UPDATE_SCORE'; payload: { key: ScoreSheetKey; value: number | null } }
   | { type: 'CONFIRM_SCORE'; payload: { key: ScoreSheetKey; value: number } }
   | { type: 'CHANGE_MODE'; payload: GameMode }
   | { type: 'RESET_GAME' };
@@ -41,7 +42,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
     }
     case 'SET_ROLLCOUNT':
       return { ...state, rollCount: action.payload };
-    case 'CONFIRM_SCORE': {
+    case 'UPDATE_SCORE': {
       const { key, value } = action.payload;
       return {
         ...state,
@@ -49,10 +50,30 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           ...state.scoreSheet,
           [key]: value,
         },
-        rollCount: 0 as RollCount,
-        dice: [1, 1, 1, 1, 1],
-        lockedDice: [false, false, false, false, false],
       };
+    }
+
+    case 'CONFIRM_SCORE': {
+      const { key, value } = action.payload;
+      const newScoreSheet = {
+        ...state.scoreSheet,
+        [key]: value,
+      };
+
+      if (state.mode === 'play') {
+        return {
+          ...state,
+          scoreSheet: newScoreSheet,
+          rollCount: 0 as RollCount,
+          dice: [1, 1, 1, 1, 1],
+          lockedDice: [false, false, false, false, false],
+        };
+      } else {
+        return {
+          ...state,
+          scoreSheet: newScoreSheet,
+        };
+      }
     }
     case 'CHANGE_MODE':
       return { ...state, mode: action.payload };

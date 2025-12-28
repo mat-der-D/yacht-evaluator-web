@@ -158,3 +158,26 @@ button {
 .score-sheet button:hover {
   background-color: #2563eb;
 }
+
+.score-sheet button:disabled {
+  background-color: #d1d5db;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.score-sheet button:sidabled:hover {
+  background-color: #d1d5db;
+}
+
+/* input[type="number"] のスピナーボタンを非表示 */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox*/
+input[type='number'] {
+  -moz-appearance: textfield;
+}
