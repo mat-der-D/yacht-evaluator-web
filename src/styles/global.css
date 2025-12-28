@@ -91,7 +91,24 @@ body {
 }
 
 .dice-actions input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none; /* Safari 対応 */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
   cursor: pointer;
+  background-color: white;
+}
+
+.dice-actions input[type='radio']:checked {
+  border-color: #3b82f6;
+  background-color: #3b82f6;
+  box-shadow: inset 0 0 0 4px #dbeafe;
+}
+
+.dice-actions input[type='radio']:hover {
+  border-color: #3b82f6;
 }
 
 button {
