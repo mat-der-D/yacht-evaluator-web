@@ -13,8 +13,19 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  gap: 12px;
   max-width: 700px;
   margin: 0 auto;
+}
+
+/* プレイモード */
+.layout--play {
+  background-color: #f8fbff;
+}
+
+/* 解析モード */
+.layout--analysis {
+  background-color: #fffbf0;
 }
 
 .dice-display {
@@ -67,7 +78,6 @@ body {
 .dice-actions button {
   padding: 12px 24px;
   font-size: 16px;
-  background-color: #3b82f6;
   color: white;
   border: none;
   border-radius: 6px;
@@ -78,8 +88,22 @@ body {
   align-items: center;
 }
 
-.dice-actions button:hover:not(:disabled) {
+/* プレイモード */
+.layout--play .dice-actions button {
+  background-color: #3b82f6;
+}
+
+.layout--play .dice-actions button:hover:not(:disabled) {
   background-color: #2563eb;
+}
+
+/* 解析モード */
+.layout--analysis .dice-actions button {
+  background-color: #f97316;
+}
+
+.layout--analysis .dice-actions button:hover:not(:disabled) {
+  background-color: #ea580c;
 }
 
 .dice-actions button:disabled {
@@ -108,14 +132,26 @@ body {
   background-color: white;
 }
 
-.dice-actions input[type='radio']:checked {
+/* プレイモード */
+.layout--play .dice-actions input[type='radio']:checked {
   border-color: #3b82f6;
   background-color: #3b82f6;
   box-shadow: inset 0 0 0 4px #dbeafe;
 }
 
-.dice-actions input[type='radio']:hover {
+.layout--play .dice-actions input[type='radio']:hover {
   border-color: #3b82f6;
+}
+
+/* 解析モード */
+.layout--analysis .dice-actions input[type='radio']:checked {
+  border-color: #f97316;
+  background-color: #f97316;
+  box-shadow: inset 0 0 0 4px #fed7aa;
+}
+
+.layout--analysis .dice-actions input[type='radio']:hover {
+  border-color: #f97316;
 }
 
 button {
@@ -180,7 +216,6 @@ button {
 /* ボタン */
 .score-sheet button {
   padding: 8px 40px;
-  background-color: #3b82f6;
   color: white;
   border: none;
   border-radius: 4px;
@@ -188,8 +223,22 @@ button {
   font-size: 14px;
 }
 
-.score-sheet button:hover {
+/* プレイモード */
+.layout--play .score-sheet button {
+  background-color: #3b82f6;
+}
+
+.layout--play .score-sheet button:hover {
   background-color: #2563eb;
+}
+
+/* 解析モード */
+.layout--analysis .score-sheet button {
+  background-color: #f97316;
+}
+
+.layout--analysis .score-sheet button:hover {
+  background-color: #ea580c;
 }
 
 .score-sheet button:disabled {
@@ -518,7 +567,6 @@ input[type='number'] {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
-  background-color: #3b82f6;
   color: white;
   border: none;
   border-radius: 6px;
@@ -529,15 +577,36 @@ input[type='number'] {
   margin: 0 auto;
 }
 
-.evaluation-button:hover:not(:disabled) {
+/* プレイモード */
+.evaluation-button--play {
+  background-color: #3b82f6;
+}
+
+.evaluation-button--play:hover:not(:disabled) {
   background-color: #2563eb;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.evaluation-button:active:not(:disabled) {
+.evaluation-button--play:active:not(:disabled) {
   transform: translateY(0);
   box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+}
+
+/* 解析モード */
+.evaluation-button--analysis {
+  background-color: #f97316;
+}
+
+.evaluation-button--analysis:hover:not(:disabled) {
+  background-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.evaluation-button--analysis:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(249, 115, 22, 0.2);
 }
 
 .evaluation-button:disabled {

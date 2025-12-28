@@ -51,7 +51,7 @@ export default function Layout() {
   };
 
   return (
-    <div className="layout">
+    <div className={`layout layout--${gameState.mode}`}>
       <ModeTab />
       <DiceDisplay />
       <DiceActions />

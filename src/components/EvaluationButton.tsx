@@ -30,7 +30,7 @@ export default function EvaluationButton({
 
   return (
     <button
-      className="evaluation-button"
+      className={`evaluation-button evaluation-button--${gameState.mode}`}
       disabled={isDisabled} onClick={handleClick}>
       {loading ? '評価中...' : '評価を見る'}
     </button>
