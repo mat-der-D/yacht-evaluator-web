@@ -28,7 +28,7 @@ export default function ScoreSheet() {
       <table>
         <tbody>
           {keyLabelPairs.map((cat) => (
-            <ScoreRow categoryKey={cat.key} label={cat.label} />
+            <ScoreRow key={cat.key} categoryKey={cat.key} label={cat.label} />
           ))}
         </tbody>
       </table>

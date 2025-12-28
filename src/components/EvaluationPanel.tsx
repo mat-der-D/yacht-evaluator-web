@@ -39,7 +39,7 @@ export default function EvaluationPanel({
             <div className="evaluation-error">{error}</div>
           ) : (
             choices.map((choice, index) => (
-              <ChoiceItem key={index} choice={choice} onApply={onApply} onConfirm={onConfirm} />
+              <ChoiceItem key={`${choice.choiceType}-${index}`} choice={choice} onApply={onApply} onConfirm={onConfirm} />
             ))
           )}
         </div>
