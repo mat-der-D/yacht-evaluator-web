@@ -146,7 +146,7 @@ button {
 
 .score-label {
   text-align: left;
-  flex: 2;
+  flex: 1;
   margin-left: 2em;
 }
 
