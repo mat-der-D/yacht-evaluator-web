@@ -356,3 +356,60 @@ input[type='number'] {
   color: white;
   box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
 }
+
+/* スマートフォン対応（480px 以下） */
+@media (max-width: 480px) {
+  .layout {
+    max-width: 100%;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .dice-item {
+    font-size: 36px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .dice-actions {
+    gap: 10px;
+  }
+
+  .dice-actions button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .evaluation-panel {
+    width: 100%;
+  }
+
+  .score-sheet td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .score-sheet button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .mode-tab button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* タブレット対応（481px ～ 1023px） */
+@media (min-width: 481px) and (max-width: 1023px) {
+  .evaluation-panel {
+    width: 350px;
+  }
+}
+
+/* デスクトップ（1024px 以上） */
+@media (min-width: 1024px) {
+  .evaluation-panel {
+    width: 400px;
+  }
+}
