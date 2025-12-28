@@ -320,11 +320,20 @@ input[type='number'] {
   top: 0;
   bottom: 0;
   width: 400px;
-  background-color: white;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   animation: slideIn 0.3s ease;
+}
+
+/* プレイモード */
+.evaluation-panel--play {
+  background-color: #f0f7ff;
+}
+
+/* 解析モード */
+.evaluation-panel--analysis {
+  background-color: #fffbf0;
 }
 
 @keyframes slideIn {
@@ -400,7 +409,6 @@ input[type='number'] {
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
-  background-color: #3b82f6;
   color: white;
   border: none;
   border-radius: 4px;
@@ -408,10 +416,26 @@ input[type='number'] {
   transition: all 0.2s ease;
 }
 
-.evaluation-choice button:hover {
+/* プレイモード */
+.evaluation-panel--play .evaluation-choice button {
+  background-color: #3b82f6;
+}
+
+.evaluation-panel--play .evaluation-choice button:hover {
   background-color: #2563eb;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* 解析モード */
+.evaluation-panel--analysis .evaluation-choice button {
+  background-color: #f97316;
+}
+
+.evaluation-panel--analysis .evaluation-choice button:hover {
+  background-color: #ea580c;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
 }
 
 .choice-description {

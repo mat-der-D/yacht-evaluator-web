@@ -1,6 +1,7 @@
 import type { Choice } from '../utils/api';
 import { DICE_SYMBOLS } from '../constants/dice';
 import { CATEGORY_LABELS, type CategoryKey } from '../constants/categories';
+import { useGame } from '../context/GameContext';
 
 interface EvaluationPanelProps {
   isOpen: boolean;
@@ -19,11 +20,13 @@ export default function EvaluationPanel({
   onApply,
   onConfirm,
 }: EvaluationPanelProps) {
+  const { gameState } = useGame();
+
   if (!isOpen) return null;
 
   return (
     <div className="evaluation-panel-overlay" onClick={onClose}>
-      <div className="evaluation-panel" onClick={(e) => e.stopPropagation()}>
+      <div className={`evaluation-panel evaluation-panel--${gameState.mode}`} onClick={(e) => e.stopPropagation()}>
         <div className="evaluation-panel-header">
           <h2>{error ? 'エラー' : '評価値'}</h2>
           <button onClick={onClose}>×</button>
