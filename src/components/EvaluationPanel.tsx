@@ -39,7 +39,12 @@ export default function EvaluationPanel({
             <div className="evaluation-error">{error}</div>
           ) : (
             choices.map((choice, index) => (
-              <ChoiceItem key={`${choice.choiceType}-${index}`} choice={choice} onApply={onApply} onConfirm={onConfirm} />
+              <ChoiceItem
+                key={`${choice.choiceType}-${index}`}
+                choice={choice}
+                onApply={onApply}
+                onConfirm={onConfirm}
+              />
             ))
           )}
         </div>
@@ -53,12 +58,6 @@ interface ChoiceItemProps {
   onApply: (choice: Choice) => void;
   onConfirm: (choice: Choice) => void;
 }
-
-const createMessageFromDiceToHold = (diceToHold: number[]): string => {
-  return diceToHold.length == 0
-    ? 'すべて振り直す'
-    : `${diceToHold.map((face) => DICE_SYMBOLS[face]).join('')}を残す`;
-};
 
 const createDiceToHoldComponent = (diceToHold: number[]) => {
   if (diceToHold.length == 0) {
@@ -78,13 +77,15 @@ const createExpectedValueMessage = (choice: Choice): string => {
 };
 
 function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
+  const { gameState } = useGame();
+
   return (
     <div className="evaluation-choice">
       {choice.choiceType === 'dice' ? (
         <>
           {createDiceToHoldComponent(choice.diceToHold!)}
           <span>{createExpectedValueMessage(choice)}</span>
-          <button onClick={() => onApply(choice)}>適用</button>
+          {gameState.mode === 'play' && <button onClick={() => onApply(choice)}>適用</button>}
         </>
       ) : (
         <>
