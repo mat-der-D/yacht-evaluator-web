@@ -82,7 +82,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     case 'CHANGE_MODE':
       return { ...state, mode: action.payload };
     case 'RESET_GAME':
-      return initialGameState;
+      return { ...initialGameState, mode: state.mode };
     default:
       return state;
   }
