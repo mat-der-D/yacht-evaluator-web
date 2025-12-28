@@ -13,7 +13,7 @@ export default function Layout() {
       <DiceDisplay />
       <DiceActions />
       <EvaluationButton />
-      <ScoreSheet></ScoreSheet>
+      <ScoreSheet />
     </div>
   );
 }
