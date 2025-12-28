@@ -12,7 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>
           ヨットは、5つのサイコロを使って遊ぶダイスゲームです。
           1ターンに最大3回までサイコロを振り、12種類ある役のどれかに得点を記録します。
-          全部の役を埋めたらゲーム終了。合計点の高さを競います。
+          全部の役を埋めたらゲーム終了。合計点が最終スコアになります。
         </p>
       </section>
 
@@ -77,27 +77,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
           <div class="category-item">
             <h4>フォーダイス</h4>
-            <p>同じ目が4つ以上あれば、5つの合計点</p>
+            <p>同じ目が4つ以上あれば、サイコロ5つの合計が得点</p>
             <p class="example">例: ⚃⚃⚃⚃⚁ → 18点</p>
           </div>
           <div class="category-item">
             <h4>フルハウス</h4>
-            <p>同じ目3つ＋同じ目2つの組み合わせで、固定の25点</p>
-            <p class="example">例: ⚂⚂⚂⚅⚅ → 25点</p>
+            <p>同じ目3つ＋同じ目2つの組み合わせで、サイコロ5つの合計が得点</p>
+            <p class="example">例: ⚂⚂⚂⚅⚅ → 21点</p>
           </div>
           <div class="category-item">
-            <h4>スモールストレート</h4>
-            <p>4つ連続する数字があれば、固定の30点</p>
-            <p class="example">例: ⚀⚁⚂⚃⚅ → 30点</p>
+            <h4>S.ストレート</h4>
+            <p>4つ連続する数字があれば15点</p>
+            <p class="example">例: ⚀⚁⚂⚃⚅ → 15点</p>
           </div>
           <div class="category-item">
-            <h4>ビッグストレート</h4>
-            <p>5つ全部が連続する数字なら、固定の30点</p>
+            <h4>B.ストレート</h4>
+            <p>5つ全部が連続する数字なら30点</p>
             <p class="example">例: ⚁⚂⚃⚄⚅ → 30点</p>
           </div>
           <div class="category-item">
             <h4>ヨット</h4>
-            <p>5つ全部が同じ目なら、固定の50点</p>
+            <p>5つ全部が同じ目なら50点</p>
             <p class="example">例: ⚃⚃⚃⚃⚃ → 50点</p>
           </div>
         </div>
@@ -122,7 +122,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <section class="rule-section">
         <h2>攻略のコツ</h2>
         <ul class="strategy-list">
-          <li>ボーナス（35点）を取るには、上段で平均して各数字を3つずつ取る必要があります</li>
+          <li>ボーナス（35点）を狙うなら、上段で各数字を3つずつ取るのが目安です</li>
           <li>ヨット（50点）やビッグストレート（30点）は高得点ですが、なかなか出ません</li>
           <li>フォーダイスは比較的狙いやすく、高得点になりやすいです</li>
           <li>どうしても点が取れないときは、エースやデュースを0点で埋めるのも手です</li>
