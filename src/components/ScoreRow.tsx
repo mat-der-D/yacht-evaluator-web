@@ -56,12 +56,14 @@ export default function ScoreRow({ categoryKey, label }: ScoreRowProps) {
         isConfirmed={isConfirmed}
       />
       <td className="score-action">
-        <button
-          disabled={isConfirmButtonDisabled}
-          onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet)}
-        >
-          ✓
-        </button>
+        {!isSpecialRow && (
+          <button
+            disabled={isConfirmButtonDisabled}
+            onClick={() => handleConfirmButton(categoryKey as keyof ScoreSheet)}
+          >
+            ✓
+          </button>
+        )}
       </td>
     </tr>
   );
