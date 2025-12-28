@@ -6,9 +6,17 @@ interface EvaluationPanelProps {
   isOpen: boolean;
   choices: Choice[];
   onClose: () => void;
+  onApply: (choice: Choice) => void;
+  onConfirm: (choice: Choice) => void;
 }
 
-export default function EvaluationPanel({ isOpen, choices, onClose }: EvaluationPanelProps) {
+export default function EvaluationPanel({
+  isOpen,
+  choices,
+  onClose,
+  onApply,
+  onConfirm,
+}: EvaluationPanelProps) {
   if (!isOpen) return null;
 
   return (
@@ -20,7 +28,7 @@ export default function EvaluationPanel({ isOpen, choices, onClose }: Evaluation
         </div>
         <div className="evaluation-panel-body">
           {choices.map((choice, index) => (
-            <ChoiceItem key={index} choice={choice} />
+            <ChoiceItem key={index} choice={choice} onApply={onApply} onConfirm={onConfirm} />
           ))}
         </div>
       </div>
@@ -29,23 +37,30 @@ export default function EvaluationPanel({ isOpen, choices, onClose }: Evaluation
 }
 
 interface ChoiceItemProps {
-  key: number;
   choice: Choice;
+  onApply: (choice: Choice) => void;
+  onConfirm: (choice: Choice) => void;
 }
 
-function ChoiceItem({ key, choice }: ChoiceItemProps) {
+function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
   return (
-    <div key={key} className="evaluation-choice">
+    <div className="evaluation-choice">
       {choice.choiceType === 'dice' ? (
-        <span>
-          {/* TODO: 何も残さないときの書き方を工夫する */}
-          {choice.diceToHold?.map((face) => DICE_SYMBOLS[face]).join(' ')} - EV:{' '}
-          {choice.expectedValue}
-        </span>
+        <>
+          <span>
+            {/* TODO: 何も残さないときの書き方を工夫する */}
+            {choice.diceToHold?.map((face) => DICE_SYMBOLS[face]).join(' ')} - EV:{' '}
+            {choice.expectedValue}
+          </span>
+          <button onClick={() => onApply(choice)}>適用</button>
+        </>
       ) : (
-        <span>
-          {CATEGORY_LABELS[choice.category as CategoryKey]} - EV: {choice.expectedValue}
-        </span>
+        <>
+          <span>
+            {CATEGORY_LABELS[choice.category as CategoryKey]} - EV: {choice.expectedValue}
+          </span>
+          <button onClick={() => onConfirm(choice)}>確定</button>
+        </>
       )}
     </div>
   );

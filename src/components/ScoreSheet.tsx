@@ -18,16 +18,18 @@ const categories: CategoryKey[] = [
   'bigStraight',
   'yacht',
   'total',
-]
+];
 
-const keyLabelPairs = categories.map((key) => ({ key, label: CATEGORY_LABELS[key] }))
+const keyLabelPairs = categories.map((key) => ({ key, label: CATEGORY_LABELS[key] }));
 
 export default function ScoreSheet() {
   return (
     <div className="score-sheet">
       <table>
         <tbody>
-          {keyLabelPairs.map((cat) => (<ScoreRow categoryKey={cat.key} label={cat.label} />))}
+          {keyLabelPairs.map((cat) => (
+            <ScoreRow categoryKey={cat.key} label={cat.label} />
+          ))}
         </tbody>
       </table>
     </div>
