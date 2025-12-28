@@ -11,7 +11,7 @@ function PlayModeActions() {
   return (
     <div className="dice-actions">
       <button onClick={() => dispatch({ type: 'ROLL_DICE' })} disabled={rollsRemaining === 0}>
-        [サイコロを振る] あと {rollsRemaining} 回
+        🎲を振る（残{rollsRemaining}回）
       </button>
     </div>
   );
