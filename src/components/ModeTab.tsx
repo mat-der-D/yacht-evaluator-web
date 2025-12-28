@@ -1,8 +1,5 @@
 import { useGame } from '../context/GameContext';
 
-const SELECTED_ICON = '●' as const;
-const UNSELECTED_ICON = '○' as const;
-
 export default function ModeTab() {
   const {
     gameState: { mode },
@@ -15,13 +12,13 @@ export default function ModeTab() {
         className={mode === 'play' ? 'active' : ''}
         onClick={() => dispatch({ type: 'CHANGE_MODE', payload: 'play' })}
       >
-        {mode === 'play' ? SELECTED_ICON : UNSELECTED_ICON} プレイ
+        🎲 遊ぶ 🎲
       </button>
       <button
         className={mode === 'analysis' ? 'active' : ''}
         onClick={() => dispatch({ type: 'CHANGE_MODE', payload: 'analysis' })}
       >
-        {mode === 'analysis' ? SELECTED_ICON : UNSELECTED_ICON} 局面解析
+        📊 分析する 📊
       </button>
     </div>
   );
