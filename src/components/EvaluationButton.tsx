@@ -4,7 +4,7 @@ import type { Choice, EvaluationRequest } from '../utils/api';
 interface EvaluationButtonProps {
   loading: boolean;
   evaluate: (request: EvaluationRequest) => Promise<Choice[] | undefined>;
-  onEvaluationComplete: (choices: Choice[]) => void;
+  onEvaluationComplete: (choices: Choice[] | undefined) => void;
 }
 
 export default function EvaluationButton({
@@ -22,9 +22,7 @@ export default function EvaluationButton({
       rollCount,
     };
     const result = await evaluate(request);
-    if (result) {
-      onEvaluationComplete(result);
-    }
+    onEvaluationComplete(result);
   };
 
   const isGameFinished = Object.values(scoreSheet).every((value) => value !== null);

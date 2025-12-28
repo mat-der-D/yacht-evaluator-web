@@ -281,3 +281,14 @@ input[type='number'] {
 .choice-action:hover {
   background-color: #2563eb;
 }
+
+.evaluation-error {
+  padding: 16px;
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  color: #991b1b;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
