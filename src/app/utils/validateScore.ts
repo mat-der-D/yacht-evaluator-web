@@ -67,3 +67,9 @@ export function isValidScore(category: CategoryKey, value: number | null): boole
       return false;
   }
 }
+
+export function validateScoreSheet(scoreSheet: ScoreSheet): boolean {
+  return (Object.keys(scoreSheet) as CategoryKey[]).every((category) =>
+    isValidScore(category, scoreSheet[category])
+  );
+}
