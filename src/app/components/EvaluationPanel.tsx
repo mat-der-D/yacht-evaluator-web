@@ -2,6 +2,7 @@ import type { Choice } from '../utils/api';
 import { DICE_SYMBOLS } from '../constants/dice';
 import { CATEGORY_LABELS, type CategoryKey } from '../constants/categories';
 import { useGame } from '../context/GameContext';
+import { calculateFinalTotal } from '../utils/calculateScore';
 
 interface EvaluationPanelProps {
   isOpen: boolean;
@@ -24,6 +25,9 @@ export default function EvaluationPanel({
 
   if (!isOpen) return null;
 
+  const totalScore = calculateFinalTotal(gameState.scoreSheet);
+  const bestExpectedValue = Math.max(...choices.map((choice) => choice.expectedValue));
+
   return (
     <div className="evaluation-panel-overlay" onClick={onClose}>
       <div
@@ -35,6 +39,9 @@ export default function EvaluationPanel({
           <button onClick={onClose}>×</button>
         </div>
         <div className="evaluation-panel-body">
+          <span>
+            現在の合計スコア: {totalScore}点<br />※ 期待値は最終スコアの見込みです
+          </span>
           {error ? (
             <div className="evaluation-error">{error}</div>
           ) : (
@@ -42,6 +49,7 @@ export default function EvaluationPanel({
               <ChoiceItem
                 key={`${choice.choiceType}-${index}`}
                 choice={choice}
+                bestExpectedValue={bestExpectedValue}
                 onApply={onApply}
                 onConfirm={onConfirm}
               />
@@ -55,6 +63,7 @@ export default function EvaluationPanel({
 
 interface ChoiceItemProps {
   choice: Choice;
+  bestExpectedValue: number;
   onApply: (choice: Choice) => void;
   onConfirm: (choice: Choice) => void;
 }
@@ -72,11 +81,19 @@ const createDiceToHoldComponent = (diceToHold: number[]) => {
   }
 };
 
-const createExpectedValueMessage = (choice: Choice): string => {
-  return `期待値 ${choice.expectedValue.toFixed(2)} 点`;
+const roundToTwoDecimals = (value: number): number => {
+  return Math.round(value * 100) / 100;
 };
 
-function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
+const createExpectedValueMessage = (choice: Choice, bestExpectedValue: number): string => {
+  const roundedExpectedValue = roundToTwoDecimals(choice.expectedValue);
+  const roundedBestExpectedValue = roundToTwoDecimals(bestExpectedValue);
+  const diff = roundedBestExpectedValue - roundedExpectedValue;
+  const diffMessage = diff === 0 ? '(Best)' : `(Best - ${diff.toFixed(2)})`;
+  return `期待値 ${roundedExpectedValue.toFixed(2)} 点 ${diffMessage}`;
+};
+
+function ChoiceItem({ choice, bestExpectedValue, onApply, onConfirm }: ChoiceItemProps) {
   const { gameState } = useGame();
 
   return (
@@ -84,13 +101,13 @@ function ChoiceItem({ choice, onApply, onConfirm }: ChoiceItemProps) {
       {choice.choiceType === 'dice' ? (
         <>
           {createDiceToHoldComponent(choice.diceToHold!)}
-          <span>{createExpectedValueMessage(choice)}</span>
+          <span>{createExpectedValueMessage(choice, bestExpectedValue)}</span>
           {gameState.mode === 'play' && <button onClick={() => onApply(choice)}>🔒</button>}
         </>
       ) : (
         <>
           <span>{CATEGORY_LABELS[choice.category as CategoryKey]}確定</span>
-          <span>{createExpectedValueMessage(choice)}</span>
+          <span>{createExpectedValueMessage(choice, bestExpectedValue)}</span>
           <button onClick={() => onConfirm(choice)}>✓</button>
         </>
       )}

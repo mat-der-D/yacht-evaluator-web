@@ -1,4 +1,5 @@
 import { useGame } from '../context/GameContext';
+import { validateScoreSheet } from '../utils/validateScore';
 import type { Choice, EvaluationRequest } from '../utils/api';
 
 interface EvaluationButtonProps {
@@ -16,6 +17,11 @@ export default function EvaluationButton({
   const { scoreSheet, dice, rollCount } = gameState;
 
   const handleClick = async () => {
+    if (!validateScoreSheet(scoreSheet)) {
+      alert('無効なスコアが入力されています。分析モードで修正してください。');
+      return;
+    }
+
     const request: EvaluationRequest = {
       scoreSheet,
       dice,

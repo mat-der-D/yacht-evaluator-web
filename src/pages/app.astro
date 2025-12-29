@@ -1,0 +1,11 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import App from '../app/App';
+import '../app/styles/global.css';
+---
+
+<AppLayout title="ヨット局面評価">
+  <div id="root">
+    <App client:only="react" />
+  </div>
+</AppLayout>
