@@ -89,6 +89,8 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .dice-item--unlocked {
