@@ -40,7 +40,7 @@ export default function EvaluationPanel({
         </div>
         <div className="evaluation-panel-body">
           <span>
-            現在の合計スコア: {totalScore.toFixed(2)}点<br />※ 期待値は最終スコアの見込みです
+            現在の合計スコア: {totalScore}点<br />※ 期待値は最終スコアの見込みです
           </span>
           {error ? (
             <div className="evaluation-error">{error}</div>
