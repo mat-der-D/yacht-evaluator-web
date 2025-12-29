@@ -58,7 +58,7 @@ export default function Layout() {
         <span>ヨット局面評価</span>
       </div>
       <header className="app-header">
-        <h1>ヨット局面評価 for アソビ大全</h1>
+        <h1>ヨット局面評価<br className="mobile-br" /> for アソビ大全</h1>
       </header>
       <ModeTab />
       <DiceDisplay />

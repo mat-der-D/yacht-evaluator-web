@@ -42,6 +42,16 @@ const doujinUrl = "https://techbookfest.org/product/wthbTwSb5AYpqWXeTe2UDK?produ
         text-align: center;
       }
 
+      .mobile-br {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .mobile-br {
+          display: inline;
+        }
+      }
+
       .description {
         font-size: 1rem;
         color: #666;
@@ -91,7 +101,7 @@ const doujinUrl = "https://techbookfest.org/product/wthbTwSb5AYpqWXeTe2UDK?produ
   </head>
   <body>
     <main>
-      <h1>ヨット局面評価 for アソビ大全</h1>
+      <h1>ヨット局面評価<br class="mobile-br"> for アソビ大全</h1>
       <p class="description">その一手、どれくらい強い？</p>
       <img
         src="/screenshot.png"

@@ -32,8 +32,8 @@
 
 .app-header {
   text-align: center;
-  padding: 24px 0;
-  margin-bottom: 16px;
+  padding: 24px 0 12px 0;
+  margin-bottom: 8px;
   position: relative;
 }
 
@@ -60,6 +60,10 @@
   font-weight: 600;
   color: #1f2937;
   letter-spacing: 0.3px;
+}
+
+.mobile-br {
+  display: none;
 }
 
 /* プレイモード */
@@ -647,6 +651,14 @@ input[type='number'] {
 
 /* スマートフォン対応（480px 以下） */
 @media (max-width: 480px) {
+  .mobile-br {
+    display: inline;
+  }
+
+  .app-header h1 {
+    font-size: 20px;
+  }
+
   .layout {
     max-width: 100%;
     padding: 10px;
