@@ -1,7 +1,7 @@
 import { useGame } from '../context/GameContext';
 import { isValidScore } from '../utils/validateScore';
 import type { ScoreSheet } from '../types/game';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 interface ScoreCellProps {
   categoryKey: keyof ScoreSheet | 'upperTotal' | 'bonus' | 'total';
@@ -16,8 +16,19 @@ function isScoreSheetKey(key: string): key is keyof ScoreSheet {
   return !SPECIAL_ROWS.has(key);
 }
 
+function isValidNumericInput(value: string): boolean {
+  if (value === '') return true;
+  const trimmed = value.trim();
+  if (trimmed === '') return true;
+  return /^-?\d+$/.test(trimmed);
+}
+
 function parseInputValue(value: string): number | null {
-  return value === '' ? null : parseInt(value, 10);
+  if (value === '') return null;
+  const trimmed = value.trim();
+  if (trimmed === '') return null;
+  const parsed = parseInt(trimmed, 10);
+  return Number.isNaN(parsed) ? null : parsed;
 }
 
 export default function ScoreCell({
@@ -32,24 +43,50 @@ export default function ScoreCell({
   const isSpecialRow = SPECIAL_ROWS.has(categoryKey);
   const isAnalysisMode = mode === 'analysis' && !isSpecialRow;
 
+  // ローカルで入力値を文字列として保持
+  const [inputText, setInputText] = useState<string>('');
+
+  // scoreSheetの値が外部から変更された時に同期
+  useEffect(() => {
+    if (isScoreSheetKey(categoryKey)) {
+      const value = scoreSheet[categoryKey];
+      setInputText(value === null ? '' : String(value));
+    }
+  }, [categoryKey, scoreSheet]);
+
   const validationState = useMemo(() => {
     if (!isScoreSheetKey(categoryKey)) {
-      return { hasError: false };
+      return { hasError: false, isInputInvalid: false };
     }
 
+    // 入力形式が不正かチェック
+    const isInputInvalid = !isValidNumericInput(inputText);
+    if (isInputInvalid) {
+      return { hasError: true, isInputInvalid: true };
+    }
+
+    // 値のバリデーション
     const currentValue = scoreSheet[categoryKey];
     const isValid = isValidScore(categoryKey, currentValue);
     const hasError = currentValue !== null && !isValid;
 
-    return { hasError };
-  }, [categoryKey, scoreSheet]);
+    return { hasError, isInputInvalid: false };
+  }, [categoryKey, scoreSheet, inputText]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isScoreSheetKey(categoryKey)) return;
 
     const inputValue = event.target.value;
-    const numValue = parseInputValue(inputValue);
 
+    // 0-9以外は受け付けない
+    if (inputValue !== '' && !/^\d*$/.test(inputValue)) {
+      return;
+    }
+
+    setInputText(inputValue);
+
+    // stateを更新
+    const numValue = parseInputValue(inputValue);
     dispatch({
       type: 'UPDATE_SCORE',
       payload: {
@@ -60,7 +97,6 @@ export default function ScoreCell({
   };
 
   if (isAnalysisMode && isScoreSheetKey(categoryKey)) {
-    const currentValue = scoreSheet[categoryKey];
     const inputClassName = `score-cell-input ${validationState.hasError ? 'score-cell-input--invalid' : ''
       }`;
 
@@ -69,8 +105,9 @@ export default function ScoreCell({
         <div className="score-cell-input-wrapper">
           <input
             className={inputClassName}
-            type="number"
-            value={currentValue ?? ''}
+            type="text"
+            inputMode="numeric"
+            value={inputText}
             onChange={handleInputChange}
           />
           {validationState.hasError && (
