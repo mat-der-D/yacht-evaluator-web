@@ -30,6 +30,38 @@
   margin: 0 auto;
 }
 
+.app-header {
+  text-align: center;
+  padding: 24px 0;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.breadcrumb {
+  font-size: 15px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.breadcrumb a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: #6b7280;
+  text-decoration: underline;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: 0.3px;
+}
+
 /* プレイモード */
 .layout--play {
   background-color: #f8fbff;
