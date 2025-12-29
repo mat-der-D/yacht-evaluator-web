@@ -16,6 +16,10 @@ function isScoreSheetKey(key: string): key is keyof ScoreSheet {
   return !SPECIAL_ROWS.has(key);
 }
 
+function toHalfWidth(str: string): string {
+  return str.replace(/[０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xfee0));
+}
+
 function isValidNumericInput(value: string): boolean {
   if (value === '') return true;
   const trimmed = value.trim();
@@ -45,6 +49,7 @@ export default function ScoreCell({
 
   // ローカルで入力値を文字列として保持
   const [inputText, setInputText] = useState<string>('');
+  const [isComposing, setIsComposing] = useState<boolean>(false);
 
   // scoreSheetの値が外部から変更された時に同期
   useEffect(() => {
@@ -56,6 +61,11 @@ export default function ScoreCell({
 
   const validationState = useMemo(() => {
     if (!isScoreSheetKey(categoryKey)) {
+      return { hasError: false, isInputInvalid: false };
+    }
+
+    // IME入力中はエラー表示しない
+    if (isComposing) {
       return { hasError: false, isInputInvalid: false };
     }
 
@@ -71,14 +81,24 @@ export default function ScoreCell({
     const hasError = currentValue !== null && !isValid;
 
     return { hasError, isInputInvalid: false };
-  }, [categoryKey, scoreSheet, inputText]);
+  }, [categoryKey, scoreSheet, inputText, isComposing]);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCompositionStart = () => {
+    setIsComposing(true);
+  };
+
+  const handleCompositionEnd = (event: React.CompositionEvent<HTMLInputElement>) => {
+    setIsComposing(false);
+    processInput(event.currentTarget.value);
+  };
+
+  const processInput = (rawValue: string) => {
     if (!isScoreSheetKey(categoryKey)) return;
 
-    const inputValue = event.target.value;
+    // 全角数字を半角に変換
+    const inputValue = toHalfWidth(rawValue);
 
-    // 0-9以外は受け付けない
+    // 0-9（半角）以外は受け付けない
     if (inputValue !== '' && !/^\d*$/.test(inputValue)) {
       return;
     }
@@ -96,6 +116,18 @@ export default function ScoreCell({
     });
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = event.target.value;
+
+    // IME入力中は表示だけ更新
+    if (isComposing) {
+      setInputText(rawValue);
+      return;
+    }
+
+    processInput(rawValue);
+  };
+
   if (isAnalysisMode && isScoreSheetKey(categoryKey)) {
     const inputClassName = `score-cell-input ${validationState.hasError ? 'score-cell-input--invalid' : ''
       }`;
@@ -109,6 +141,8 @@ export default function ScoreCell({
             inputMode="numeric"
             value={inputText}
             onChange={handleInputChange}
+            onCompositionStart={handleCompositionStart}
+            onCompositionEnd={handleCompositionEnd}
           />
           {validationState.hasError && (
             <div className="score-cell-error">無効なスコアです</div>
