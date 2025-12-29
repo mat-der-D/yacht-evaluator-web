@@ -81,10 +81,16 @@ const createDiceToHoldComponent = (diceToHold: number[]) => {
   }
 };
 
+const roundToTwoDecimals = (value: number): number => {
+  return Math.round(value * 100) / 100;
+};
+
 const createExpectedValueMessage = (choice: Choice, bestExpectedValue: number): string => {
-  const diff = bestExpectedValue - choice.expectedValue;
-  const diffMessage = diff < 0.05 ? '(best)' : `(best - ${diff.toFixed(2)})`;
-  return `期待値 ${choice.expectedValue.toFixed(2)} 点 ${diffMessage}`;
+  const roundedExpectedValue = roundToTwoDecimals(choice.expectedValue);
+  const roundedBestExpectedValue = roundToTwoDecimals(bestExpectedValue);
+  const diff = roundedBestExpectedValue - roundedExpectedValue;
+  const diffMessage = diff === 0 ? '(Best)' : `(Best - ${diff.toFixed(2)})`;
+  return `期待値 ${roundedExpectedValue.toFixed(2)} 点 ${diffMessage}`;
 };
 
 function ChoiceItem({ choice, bestExpectedValue, onApply, onConfirm }: ChoiceItemProps) {
