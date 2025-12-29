@@ -2,6 +2,7 @@ import type { Choice } from '../utils/api';
 import { DICE_SYMBOLS } from '../constants/dice';
 import { CATEGORY_LABELS, type CategoryKey } from '../constants/categories';
 import { useGame } from '../context/GameContext';
+import { calculateFinalTotal } from '../utils/calculateScore';
 
 interface EvaluationPanelProps {
   isOpen: boolean;
@@ -24,6 +25,8 @@ export default function EvaluationPanel({
 
   if (!isOpen) return null;
 
+  const totalScore = calculateFinalTotal(gameState.scoreSheet)
+
   return (
     <div className="evaluation-panel-overlay" onClick={onClose}>
       <div
@@ -35,6 +38,10 @@ export default function EvaluationPanel({
           <button onClick={onClose}>×</button>
         </div>
         <div className="evaluation-panel-body">
+          <span>
+            現在の合計スコア: {totalScore.toFixed(2)}点<br />
+            ※ 期待値は最終スコアの見込みです
+          </span>
           {error ? (
             <div className="evaluation-error">{error}</div>
           ) : (
