@@ -129,8 +129,9 @@ export default function ScoreCell({
   };
 
   if (isAnalysisMode && isScoreSheetKey(categoryKey)) {
-    const inputClassName = `score-cell-input ${validationState.hasError ? 'score-cell-input--invalid' : ''
-      }`;
+    const inputClassName = `score-cell-input ${
+      validationState.hasError ? 'score-cell-input--invalid' : ''
+    }`;
 
     return (
       <td className={`score-value ${isConfirmed ? '' : 'score-unconfirmed'}`}>
@@ -144,9 +145,7 @@ export default function ScoreCell({
             onCompositionStart={handleCompositionStart}
             onCompositionEnd={handleCompositionEnd}
           />
-          {validationState.hasError && (
-            <div className="score-cell-error">無効なスコアです</div>
-          )}
+          {validationState.hasError && <div className="score-cell-error">無効なスコアです</div>}
         </div>
       </td>
     );
