@@ -3,14 +3,17 @@ import type { RollCount } from '../types/game';
 
 function PlayModeActions() {
   const {
-    gameState: { rollCount },
+    gameState: { scoreSheet, rollCount },
     dispatch,
   } = useGame();
+
+  const isGameFinished = Object.values(scoreSheet).every((value) => value !== null);
+  const isDisabled = isGameFinished || rollCount >= 3;
   const rollsRemaining = Math.max(0, 3 - rollCount);
 
   return (
     <div className="dice-actions">
-      <button onClick={() => dispatch({ type: 'ROLL_DICE' })} disabled={rollsRemaining === 0}>
+      <button onClick={() => dispatch({ type: 'ROLL_DICE' })} disabled={isDisabled}>
         🎲を振る（残{rollsRemaining}回）
       </button>
     </div>
