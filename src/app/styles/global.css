@@ -47,7 +47,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: var(--content-padding);
+  padding: 4px var(--content-padding);
   padding-bottom: calc(var(--bottom-nav-height) + var(--content-padding));
   gap: 3px;
 }
@@ -115,6 +115,7 @@
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  margin-bottom: 4px;
 }
 
 .score-sheet table {
@@ -459,7 +460,7 @@ input[type='number'] {
   display: flex;
   gap: 8px;
   justify-content: center;
-  padding: 3px 0;
+  padding: 3px 0 0 0;
 }
 
 .dice-item {
@@ -891,7 +892,7 @@ input[type='number'] {
    ----------------------------------------- */
 @media (max-width: 479px) {
   .layout__main {
-    padding: 12px;
+    padding: 4px 12px;
     padding-bottom: calc(var(--bottom-nav-height) + 12px);
     gap: 2px;
   }
