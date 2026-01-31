@@ -5,10 +5,12 @@
 本ドキュメントは、Kotlin で実装された Android アプリ「Yacht Evaluator」を React Web アプリとして再実装するためのデザイン仕様を定義するものです。
 
 ### 対象プラットフォーム
+
 - **PC ブラウザ**: Chrome, Firefox, Safari, Edge (最新2バージョン)
 - **スマートフォンブラウザ**: iOS Safari, Android Chrome
 
 ### 画面構成
+
 - 一画面完結型 (Adaptive Display)
 - スクロールなしで全コンテンツを表示
 - 画面サイズに応じたコンポーネントサイズの動的調整
@@ -19,45 +21,45 @@
 
 ### 遊ぶモード (Play Mode) - Blue Theme
 
-| 用途 | カラーコード | 説明 |
-|------|-------------|------|
-| Primary | `#3B82F6` | メインアクセントカラー (ボタン、ヘッダー) |
-| Primary Container | `#DBEAFE` | Primary の薄い背景 |
-| On Primary | `#FFFFFF` | Primary 上のテキスト |
-| Secondary | `#60A5FA` | セカンダリアクセント |
-| Background | `#F0F7FF` | 画面全体の背景 (非常に薄い青) |
+| 用途              | カラーコード | 説明                                      |
+| ----------------- | ------------ | ----------------------------------------- |
+| Primary           | `#3B82F6`    | メインアクセントカラー (ボタン、ヘッダー) |
+| Primary Container | `#DBEAFE`    | Primary の薄い背景                        |
+| On Primary        | `#FFFFFF`    | Primary 上のテキスト                      |
+| Secondary         | `#60A5FA`    | セカンダリアクセント                      |
+| Background        | `#F0F7FF`    | 画面全体の背景 (非常に薄い青)             |
 
 ### 分析するモード (Analysis Mode) - Orange Theme
 
-| 用途 | カラーコード | 説明 |
-|------|-------------|------|
-| Primary | `#F97316` | メインアクセントカラー (ボタン、ヘッダー) |
-| Primary Container | `#FED7AA` | Primary の薄い背景 |
-| On Primary | `#FFFFFF` | Primary 上のテキスト |
-| Secondary | `#FB923C` | セカンダリアクセント |
-| Background | `#FFF4ED` | 画面全体の背景 (非常に薄いオレンジ) |
+| 用途              | カラーコード | 説明                                      |
+| ----------------- | ------------ | ----------------------------------------- |
+| Primary           | `#F97316`    | メインアクセントカラー (ボタン、ヘッダー) |
+| Primary Container | `#FED7AA`    | Primary の薄い背景                        |
+| On Primary        | `#FFFFFF`    | Primary 上のテキスト                      |
+| Secondary         | `#FB923C`    | セカンダリアクセント                      |
+| Background        | `#FFF4ED`    | 画面全体の背景 (非常に薄いオレンジ)       |
 
 ### 共通カラー
 
-| 用途 | カラーコード | 説明 |
-|------|-------------|------|
-| Surface | `#FFFFFF` | カード、行の背景 |
-| On Surface | `#1F2937` | メインテキスト |
-| On Surface Variant | `#6B7280` | サブテキスト |
-| Outline | `#E5E7EB` | ボーダー (薄) |
-| Outline Variant | `#D1D5DB` | ボーダー (濃) |
-| Confirmed Score Background | `#F3F4F6` | 確定済みスコア行の背景 (小計・合計行) |
-| Predicted Score Color | `#9CA3AF` | 予測スコアのテキスト色 |
+| 用途                       | カラーコード | 説明                                  |
+| -------------------------- | ------------ | ------------------------------------- |
+| Surface                    | `#FFFFFF`    | カード、行の背景                      |
+| On Surface                 | `#1F2937`    | メインテキスト                        |
+| On Surface Variant         | `#6B7280`    | サブテキスト                          |
+| Outline                    | `#E5E7EB`    | ボーダー (薄)                         |
+| Outline Variant            | `#D1D5DB`    | ボーダー (濃)                         |
+| Confirmed Score Background | `#F3F4F6`    | 確定済みスコア行の背景 (小計・合計行) |
+| Predicted Score Color      | `#9CA3AF`    | 予測スコアのテキスト色                |
 
 ### ダイスカラー
 
-| 用途 | カラーコード | 説明 |
-|------|-------------|------|
-| Dice Background | `#FFFFFF` | ダイスの背景 |
-| Dice Border | `#D1D5DB` | 通常時のボーダー |
-| Dice Locked Border | `#3B82F6` | ロック時のボーダー |
-| Dice Dot | `#1F2937` | ドット (2〜6) |
-| Dice Dot One | `#FF0000` | 1のドット (赤) |
+| 用途               | カラーコード | 説明               |
+| ------------------ | ------------ | ------------------ |
+| Dice Background    | `#FFFFFF`    | ダイスの背景       |
+| Dice Border        | `#D1D5DB`    | 通常時のボーダー   |
+| Dice Locked Border | `#3B82F6`    | ロック時のボーダー |
+| Dice Dot           | `#1F2937`    | ドット (2〜6)      |
+| Dice Dot One       | `#FF0000`    | 1のドット (赤)     |
 
 ---
 
@@ -67,20 +69,20 @@
 
 ### テキストスタイル
 
-| スタイル名 | サイズ | 行高 | ウェイト | 用途 |
-|-----------|-------|------|---------|------|
-| Display Large | 32px | 40px | Bold | - |
-| Display Medium | 28px | 36px | Bold | - |
-| Headline Large | 24px | 32px | SemiBold | - |
-| Headline Medium | 20px | 28px | SemiBold | 評価パネルタイトル |
-| Title Large | 18px | 26px | Medium | ヘッダータイトル、モードタブアイコン |
-| Title Medium | 16px | 24px | Medium | ヘッダースコア、ボタンテキスト |
-| Body Large | 16px | 24px | Normal | 設定項目テキスト |
-| Body Medium | 14px | 20px | Normal | スコア行テキスト、評価注記 |
-| Body Small | 12px | 16px | Normal | 評価パネル期待値 |
-| Label Large | 14px | 20px | Medium | ボタンラベル |
-| Label Medium | 12px | 16px | Medium | モードタブラベル |
-| Label Small | 10px | 14px | Medium | エラーメッセージ |
+| スタイル名      | サイズ | 行高 | ウェイト | 用途                                 |
+| --------------- | ------ | ---- | -------- | ------------------------------------ |
+| Display Large   | 32px   | 40px | Bold     | -                                    |
+| Display Medium  | 28px   | 36px | Bold     | -                                    |
+| Headline Large  | 24px   | 32px | SemiBold | -                                    |
+| Headline Medium | 20px   | 28px | SemiBold | 評価パネルタイトル                   |
+| Title Large     | 18px   | 26px | Medium   | ヘッダータイトル、モードタブアイコン |
+| Title Medium    | 16px   | 24px | Medium   | ヘッダースコア、ボタンテキスト       |
+| Body Large      | 16px   | 24px | Normal   | 設定項目テキスト                     |
+| Body Medium     | 14px   | 20px | Normal   | スコア行テキスト、評価注記           |
+| Body Small      | 12px   | 16px | Normal   | 評価パネル期待値                     |
+| Label Large     | 14px   | 20px | Medium   | ボタンラベル                         |
+| Label Medium    | 12px   | 16px | Medium   | モードタブラベル                     |
+| Label Small     | 10px   | 14px | Medium   | エラーメッセージ                     |
 
 ---
 
@@ -113,11 +115,11 @@
 
 ### レスポンシブブレークポイント
 
-| ブレークポイント | 幅 | 説明 |
-|----------------|-------|------|
-| Mobile | < 480px | スマートフォン縦向き |
-| Tablet | 480px - 768px | スマートフォン横向き / 小型タブレット |
-| Desktop | > 768px | PC / 大型タブレット |
+| ブレークポイント | 幅            | 説明                                  |
+| ---------------- | ------------- | ------------------------------------- |
+| Mobile           | < 480px       | スマートフォン縦向き                  |
+| Tablet           | 480px - 768px | スマートフォン横向き / 小型タブレット |
+| Desktop          | > 768px       | PC / 大型タブレット                   |
 
 ### PC レイアウト (Desktop)
 
@@ -138,6 +140,7 @@
 ### 1. ヘッダー (GameHeader)
 
 **構造:**
+
 ```
 +------------------------------------------+
 | ヨット局面評価               スコア: 0     |
@@ -145,6 +148,7 @@
 ```
 
 **スタイル:**
+
 - 背景色: `Primary` (モードに応じて変化)
 - テキスト色: `On Primary` (白)
 - パディング: 上下 `12px`、左右 `16px`
@@ -159,35 +163,39 @@
 **カテゴリ一覧:**
 
 #### 上段 (Upper Section)
+
 | 表示名 (JA) | 表示名 (EN) | API名 |
-|-------------|-------------|-------|
-| エース | Aces | ace |
-| デュース | Deuces | deuce |
-| トレイ | Threes | trey |
-| フォー | Fours | four |
-| ファイブ | Fives | five |
-| シックス | Sixes | six |
+| ----------- | ----------- | ----- |
+| エース      | Aces        | ace   |
+| デュース    | Deuces      | deuce |
+| トレイ      | Threes      | trey  |
+| フォー      | Fours       | four  |
+| ファイブ    | Fives       | five  |
+| シックス    | Sixes       | six   |
 
 #### 集計行
-| 表示名 (JA) | 表示名 (EN) | 説明 |
-|-------------|-------------|------|
-| 小計 | Subtotal | 上段合計 |
-| ボーナス | Bonus | 63点以上で+35点 |
+
+| 表示名 (JA) | 表示名 (EN) | 説明            |
+| ----------- | ----------- | --------------- |
+| 小計        | Subtotal    | 上段合計        |
+| ボーナス    | Bonus       | 63点以上で+35点 |
 
 #### 下段 (Lower Section)
-| 表示名 (JA) | 表示名 (EN) | API名 |
-|-------------|-------------|-------|
-| チョイス | Choice | choice |
-| フォーダイス | 4 of a Kind | fourOfAKind |
-| フルハウス | Full House | fullHouse |
+
+| 表示名 (JA)  | 表示名 (EN) | API名         |
+| ------------ | ----------- | ------------- |
+| チョイス     | Choice      | choice        |
+| フォーダイス | 4 of a Kind | fourOfAKind   |
+| フルハウス   | Full House  | fullHouse     |
 | S.ストレート | S. Straight | smallStraight |
-| B.ストレート | L. Straight | bigStraight |
-| ヨット | Yacht | yacht |
+| B.ストレート | L. Straight | bigStraight   |
+| ヨット       | Yacht       | yacht         |
 
 #### 最終行
-| 表示名 (JA) | 表示名 (EN) | 説明 |
-|-------------|-------------|------|
-| 合計 | Total | 総合計 |
+
+| 表示名 (JA) | 表示名 (EN) | 説明   |
+| ----------- | ----------- | ------ |
+| 合計        | Total       | 総合計 |
 
 **スコア行 (ScoreRow) - 遊ぶモード:**
 
@@ -202,6 +210,7 @@
 - 背景: `Surface` (白)
 
 **3列構成:**
+
 1. カテゴリ名 (左揃え、`flex: 1`)
 2. スコア表示 (中央揃え、`flex: 1`)
    - 未確定: `(+予測値)` グレー表示
@@ -240,11 +249,13 @@
 ### 3. アクションボタン
 
 **構成:**
+
 ```
 [📊 評価を見る]  [リセット]
 ```
 
 **評価ボタン:**
+
 - タイプ: Primary (塗りつぶし)
 - 背景: `Primary`
 - テキスト: `On Primary`
@@ -252,6 +263,7 @@
 - 無効時: グレーアウト
 
 **リセットボタン:**
+
 - タイプ: Outlined
 - ボーダー: `1px solid Primary`
 - テキスト: `Primary`
@@ -262,11 +274,13 @@
 ### 4. ロールボタン (遊ぶモード)
 
 **構造:**
+
 ```
 [🎲を振る (残3回)]
 ```
 
 **スタイル:**
+
 - 背景: `Primary`
 - テキスト: `On Primary`
 - パディング: 上下 `12px`、左右 `24px`
@@ -278,11 +292,13 @@
 ### 5. ロール回数セレクター (分析するモード)
 
 **構造:**
+
 ```
 (○) 0投目  (●) 1投目  (○) 2投目  (○) 3投目
 ```
 
 **スタイル:**
+
 - ラジオボタン形式
 - 選択時: `Primary` カラー
 - 非選択時: グレー
@@ -293,6 +309,7 @@
 ### 6. ダイス行 (DiceRow)
 
 **構造:**
+
 ```
 +------+ +------+ +------+ +------+ +------+
 |  ⚀   | |  ⚁   | |  ⚂   | |  ⚃   | |  ⚄   |
@@ -300,6 +317,7 @@
 ```
 
 **ダイス (DieView):**
+
 - アスペクト比: `1:1` (正方形)
 - 背景: `Dice Background` (白)
 - ボーダー: `2px solid Dice Border`
@@ -308,24 +326,27 @@
 
 **ドットパターン:**
 
-| 値 | パターン | 中央ドット色 |
-|---|---------|-------------|
-| 1 | 中央に1ドット | 赤 (`#FF0000`) |
-| 2 | 対角線に2ドット | 黒 |
-| 3 | 対角線に3ドット | 黒 |
-| 4 | 四隅に4ドット | 黒 |
-| 5 | 四隅+中央に5ドット | 黒 |
-| 6 | 左右3列に6ドット | 黒 |
+| 値  | パターン           | 中央ドット色   |
+| --- | ------------------ | -------------- |
+| 1   | 中央に1ドット      | 赤 (`#FF0000`) |
+| 2   | 対角線に2ドット    | 黒             |
+| 3   | 対角線に3ドット    | 黒             |
+| 4   | 四隅に4ドット      | 黒             |
+| 5   | 四隅+中央に5ドット | 黒             |
+| 6   | 左右3列に6ドット   | 黒             |
 
 **ドットサイズ:**
+
 - 値 1: `12px`
 - 値 2〜6: `9.5px`
 
 **ロック状態 (遊ぶモードのみ):**
+
 - ボーダー: `3px solid #3B82F6` (青)
 - 右上に🔒アイコン表示
 
 **インタラクション:**
+
 - 遊ぶモード: クリックでロック/アンロック切り替え
 - 分析するモード: クリックで値を 1→2→3→4→5→6→1 とサイクル
 
@@ -334,6 +355,7 @@
 ### 7. ボトムナビゲーション (ModeTabs)
 
 **構造:**
+
 ```
 +------------------------------------------+
 |    🎲        |        🔍                 |
@@ -342,6 +364,7 @@
 ```
 
 **スタイル:**
+
 - 高さ: `64px`
 - 背景: `Surface` (白)
 - 各タブ: `flex: 1`
@@ -349,11 +372,13 @@
 - ラベル: Label Medium (12px)
 
 **選択状態:**
+
 - 遊ぶ: `#3B82F6` (青)
 - 分析する: `#F97316` (オレンジ)
 - インジケーター背景: `Primary` の 12% 透明度
 
 **非選択状態:**
+
 - アイコン・テキスト: `On Surface Variant` (グレー)
 
 ---
@@ -385,10 +410,12 @@
 ```
 
 **バックドロップ:**
+
 - 背景: `rgba(0, 0, 0, 0.5)`
 - クリックでパネルを閉じる
 
 **パネル:**
+
 - 位置: 画面下部からスライドイン
 - 初期高さ: 画面の 48%
 - 最小高さ: 画面の 25%
@@ -397,6 +424,7 @@
 - 角丸: 上部のみ `16px`
 
 **ドラッグハンドル:**
+
 - 幅: `40px`
 - 高さ: `4px`
 - 色: `On Surface Variant` の 40% 透明度
@@ -404,14 +432,17 @@
 - 上下ドラッグでパネル高さを変更可能
 
 **ヘッダー:**
+
 - タイトル: "評価値" (Headline Medium)
 - 閉じるボタン: × アイコン (右端)
 
 **コンテンツ:**
+
 - 注釈: "※ 期待値は最終スコアの見込みです"
 - 推奨アクションリスト (スクロール可能)
 
 **推奨アクション項目:**
+
 - 区切り線: `1.5px solid Outline`
 - アクション説明 (Title Medium)
   - ダイスキープ: "⚀⚁⚂ を残す" (ダイス絵文字は1.5倍サイズ)
@@ -424,9 +455,11 @@
   - カテゴリ確定: "✓"
 
 **ローディング状態:**
+
 - 中央にスピナー表示 (Primary カラー)
 
 **エラー状態:**
+
 - タイトル: "エラー"
 - エラーメッセージを中央に表示 (赤テキスト)
 
@@ -435,6 +468,7 @@
 ### 9. リセット確認ダイアログ
 
 **構造:**
+
 ```
 +------------------------------------------+
 | ゲームをリセット                          |
@@ -447,6 +481,7 @@
 ```
 
 **スタイル:**
+
 - タイトル: Headline Small
 - 本文: Body Medium
 - キャンセル: テキストボタン
@@ -457,16 +492,19 @@
 ## アニメーション
 
 ### パネルスライドイン
+
 - 方向: 下から上
 - 所要時間: `300ms`
 - イージング: `ease-out`
 
 ### パネルスライドアウト
+
 - 方向: 上から下
 - 所要時間: `250ms`
 - イージング: `ease-in`
 
 ### パネル高さ変更
+
 - アニメーション: Spring
 - DampingRatio: NoBouncy
 - Stiffness: Medium
@@ -629,7 +667,7 @@ POST https://yacht-evaluator-api-1092304578340.asia-northeast1.run.app/api/v1/ev
     {
       "type": "category",
       "category": "choice",
-      "expectedValue": 185.00
+      "expectedValue": 185.0
     }
   ]
 }
@@ -643,11 +681,11 @@ POST https://yacht-evaluator-api-1092304578340.asia-northeast1.run.app/api/v1/ev
 
 ```typescript
 interface GameState {
-  dice: number[];           // [1-6, 1-6, 1-6, 1-6, 1-6]
-  lockedDice: boolean[];    // 5要素の配列
+  dice: number[]; // [1-6, 1-6, 1-6, 1-6, 1-6]
+  lockedDice: boolean[]; // 5要素の配列
   scoreSheet: ScoreSheet;
-  rollCount: RollCount;     // ZERO, ONE, TWO, THREE
-  mode: GameMode;           // PLAY, ANALYSIS
+  rollCount: RollCount; // ZERO, ONE, TWO, THREE
+  mode: GameMode; // PLAY, ANALYSIS
 }
 
 interface ScoreSheet {
@@ -688,16 +726,19 @@ type Recommendation =
 ## アクセシビリティ
 
 ### キーボードナビゲーション
+
 - Tab キーで全てのインタラクティブ要素にフォーカス可能
 - Enter/Space キーでボタン押下
 - Escape キーでモーダル/パネルを閉じる
 
 ### スクリーンリーダー対応
+
 - 全てのボタンに適切な `aria-label`
 - ダイスには "Dice showing X, locked/unlocked" の説明
 - 評価パネルには `role="dialog"` と `aria-modal="true"`
 
 ### カラーコントラスト
+
 - テキストと背景のコントラスト比: WCAG AA 基準 (4.5:1) 以上を維持
 
 ---
