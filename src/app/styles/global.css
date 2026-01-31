@@ -968,7 +968,7 @@ input[type='number'] {
 }
 
 /* 縦が長い画面: 少し大きめ */
-@media (min-height: 851px) {
+@media (min-height: 851px) and (max-height: 1000px) {
   .score-label,
   .score-value {
     font-size: 16px;
@@ -976,6 +976,18 @@ input[type='number'] {
 
   .score-sheet td {
     padding: 0px 6px;
+  }
+}
+
+/* 縦がかなり長い画面(タブレット等): さらに大きめ */
+@media (min-height: 1001px) {
+  .score-label,
+  .score-value {
+    font-size: 18px;
+  }
+
+  .score-sheet td {
+    padding: 1px 6px;
   }
 }
 
