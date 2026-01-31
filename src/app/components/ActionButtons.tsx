@@ -2,21 +2,23 @@ import { useGame } from '../context/GameContext';
 import { validateScoreSheet } from '../utils/validateScore';
 import type { Choice, EvaluationRequest } from '../utils/api';
 
-interface EvaluationButtonProps {
+interface ActionButtonsProps {
   loading: boolean;
   evaluate: (request: EvaluationRequest) => Promise<Choice[] | undefined>;
   onEvaluationComplete: (choices: Choice[] | undefined) => void;
+  onResetClick: () => void;
 }
 
-export default function EvaluationButton({
+export default function ActionButtons({
   loading,
   evaluate,
   onEvaluationComplete,
-}: EvaluationButtonProps) {
+  onResetClick,
+}: ActionButtonsProps) {
   const { gameState } = useGame();
-  const { scoreSheet, dice, rollCount } = gameState;
+  const { scoreSheet, dice, rollCount, mode } = gameState;
 
-  const handleClick = async () => {
+  const handleEvaluate = async () => {
     if (!validateScoreSheet(scoreSheet)) {
       alert('無効なスコアが入力されています。分析モードで修正してください。');
       return;
@@ -32,15 +34,21 @@ export default function EvaluationButton({
   };
 
   const isGameFinished = Object.values(scoreSheet).every((value) => value !== null);
-  const isDisabled = isGameFinished || rollCount === 0 || loading;
+  const isEvaluateDisabled = isGameFinished || rollCount === 0 || loading;
 
   return (
-    <button
-      className={`evaluation-button evaluation-button--${gameState.mode}`}
-      disabled={isDisabled}
-      onClick={handleClick}
-    >
-      {loading ? '評価中...' : '評価を見る'}
-    </button>
+    <div className={`action-buttons action-buttons--${mode}`}>
+      <button
+        className="action-buttons__evaluate"
+        disabled={isEvaluateDisabled}
+        onClick={handleEvaluate}
+        aria-label="評価を見る"
+      >
+        {loading ? '評価中...' : '📊 評価を見る'}
+      </button>
+      <button className="action-buttons__reset" onClick={onResetClick} aria-label="リセット">
+        リセット
+      </button>
+    </div>
   );
 }

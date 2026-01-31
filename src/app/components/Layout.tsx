@@ -1,29 +1,30 @@
-import ModeTab from './ModeTab';
-import DiceDisplay from './DiceDisplay';
-import DiceActions from './DiceActions';
+import GameHeader from './GameHeader';
 import ScoreSheet from './ScoreSheet';
-import EvaluationButton from './EvaluationButton';
+import ActionButtons from './ActionButtons';
+import DiceActions from './DiceActions';
+import DiceDisplay from './DiceDisplay';
+import BottomNavigation from './BottomNavigation';
+import EvaluationPanel from './EvaluationPanel';
+import ResetDialog from './ResetDialog';
 import { useGame } from '../context/GameContext';
 import { useState } from 'react';
 import type { Choice } from '../utils/api';
-import EvaluationPanel from './EvaluationPanel';
 import { useEvaluation } from '../hooks/useEvaluation';
 
 export default function Layout() {
   const { gameState, dispatch } = useGame();
   const [evaluationPanelOpen, setEvaluationPanelOpen] = useState(false);
   const [evaluationChoices, setEvaluationChoices] = useState<Choice[]>([]);
+  const [showResetDialog, setShowResetDialog] = useState(false);
   const { loading, error, evaluate } = useEvaluation();
 
-  // EvaluationButton が呼ぶハンドラー
   const handleEvaluationComplete = (choices: Choice[] | undefined) => {
     setEvaluationPanelOpen(true);
     if (choices) {
-      setEvaluationChoices(choices!);
+      setEvaluationChoices(choices);
     }
   };
 
-  // EvaluationPanel の [適用] ボタンが呼ぶハンドラー
   const handleApplyDiceChoice = (choice: Choice) => {
     if (choice.choiceType !== 'dice') return;
     const dice = gameState.dice;
@@ -40,7 +41,6 @@ export default function Layout() {
     setEvaluationPanelOpen(false);
   };
 
-  // EvaluationPanel の [確定] ボタンが呼ぶハンドラー
   const handleConfirmCategoryChoice = (choice: Choice) => {
     if (choice.choiceType !== 'category') return;
     dispatch({
@@ -50,28 +50,41 @@ export default function Layout() {
     setEvaluationPanelOpen(false);
   };
 
+  const handleResetClick = () => {
+    setShowResetDialog(true);
+  };
+
+  const handleResetConfirm = () => {
+    dispatch({ type: 'RESET_GAME' });
+    setShowResetDialog(false);
+  };
+
+  const handleResetCancel = () => {
+    setShowResetDialog(false);
+  };
+
   return (
     <div className={`layout layout--${gameState.mode}`}>
-      <div className="breadcrumb">
-        <a href="/">ホーム</a>
-        <span> &gt; </span>
-        <span>ヨット局面評価</span>
-      </div>
-      <header className="app-header">
-        <h1>
-          ヨット局面評価
-          <br className="mobile-br" /> for アソビ大全
-        </h1>
-      </header>
-      <ModeTab />
-      <DiceDisplay />
-      <DiceActions />
-      <EvaluationButton
-        loading={loading}
-        evaluate={evaluate}
-        onEvaluationComplete={handleEvaluationComplete}
-      />
-      <ScoreSheet />
+      <GameHeader />
+
+      <main className="layout__main">
+        <ScoreSheet />
+
+        <div className="layout__divider" />
+
+        <ActionButtons
+          loading={loading}
+          evaluate={evaluate}
+          onEvaluationComplete={handleEvaluationComplete}
+          onResetClick={handleResetClick}
+        />
+
+        <DiceActions />
+
+        <DiceDisplay />
+      </main>
+
+      <BottomNavigation />
 
       <EvaluationPanel
         isOpen={evaluationPanelOpen}
@@ -80,6 +93,12 @@ export default function Layout() {
         onClose={() => setEvaluationPanelOpen(false)}
         onApply={handleApplyDiceChoice}
         onConfirm={handleConfirmCategoryChoice}
+      />
+
+      <ResetDialog
+        isOpen={showResetDialog}
+        onConfirm={handleResetConfirm}
+        onCancel={handleResetCancel}
       />
     </div>
   );
