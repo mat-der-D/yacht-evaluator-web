@@ -21,6 +21,11 @@
   min-height: 100vh;
   min-height: 100dvh;
   transition: background-color var(--transition-normal);
+  /* テキスト選択を無効化 */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .app--play {
