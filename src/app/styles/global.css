@@ -21,6 +21,11 @@
   min-height: 100vh;
   min-height: 100dvh;
   transition: background-color var(--transition-normal);
+  /* テキスト選択を無効化 */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .app--play {
@@ -153,12 +158,8 @@
   border-bottom: none;
 }
 
-.score-sheet td {
-  padding: 0px 6px;
-}
-
 .score-label {
-  flex: 2;
+  flex: 1;
   text-align: left;
   font-size: var(--body-small-size);
   font-weight: var(--body-medium-weight);
@@ -167,16 +168,16 @@
 
 .score-value {
   flex: 1;
-  text-align: right;
+  text-align: center;
   font-size: var(--body-small-size);
   color: var(--on-surface);
 }
 
 .score-action {
-  flex: 0 0 44px;
-  text-align: center;
+  flex: 1;
+  text-align: right;
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }
 
 .score-unconfirmed {
@@ -199,7 +200,7 @@
 
 /* Score Sheet Buttons */
 .score-sheet button {
-  width: 36px;
+  width: 64px;
   height: 24px;
   color: white;
   border: none;
@@ -251,7 +252,7 @@
   color: var(--on-surface);
   transition: all var(--transition-fast);
   font-family: inherit;
-  text-align: right;
+  text-align: center;
 }
 
 .score-cell-input:hover {
@@ -949,6 +950,9 @@ input[type='number'] {
   .score-value {
     font-size: 12px;
   }
+  .score-sheet td {
+    padding: 0.5px 12px;
+  }
 }
 
 /* 縦が長い画面: 少し大きめ */
@@ -956,6 +960,9 @@ input[type='number'] {
   .score-label,
   .score-value {
     font-size: 14px;
+  }
+  .score-sheet td {
+    padding: 2.5px 12px;
   }
 }
 
@@ -965,6 +972,9 @@ input[type='number'] {
   .score-value {
     font-size: 16px;
   }
+  .score-sheet td {
+    padding: 5px 12px;
+  }
 }
 
 /* 縦がかなり長い画面(タブレット等): さらに大きめ */
@@ -972,6 +982,9 @@ input[type='number'] {
   .score-label,
   .score-value {
     font-size: 18px;
+  }
+  .score-sheet td {
+    padding: 9.5px 12px;
   }
 }
 
