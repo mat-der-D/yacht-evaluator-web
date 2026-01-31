@@ -49,13 +49,11 @@
   flex-direction: column;
   padding: var(--content-padding);
   padding-bottom: calc(var(--bottom-nav-height) + var(--content-padding));
-  gap: 6px;
+  gap: 3px;
 }
 
 .layout__divider {
-  height: 1px;
-  background-color: var(--outline);
-  margin: 4px 0;
+  display: none;
 }
 
 /* -----------------------------------------
@@ -82,6 +80,20 @@
   color: var(--analysis-on-primary);
 }
 
+.game-header__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-header__home {
+  font-size: var(--title-medium-size);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
 .game-header__title {
   font-size: var(--title-large-size);
   font-weight: var(--title-large-weight);
@@ -92,26 +104,6 @@
   font-size: var(--title-medium-size);
   font-weight: var(--title-medium-weight);
   line-height: var(--title-medium-line);
-}
-
-/* -----------------------------------------
-   Breadcrumb
-   ----------------------------------------- */
-.breadcrumb {
-  font-size: var(--body-medium-size);
-  color: var(--on-surface-variant);
-  padding: 8px var(--content-padding);
-}
-
-.breadcrumb a {
-  color: var(--on-surface-variant);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.breadcrumb a:hover {
-  color: var(--on-surface);
-  text-decoration: underline;
 }
 
 /* -----------------------------------------
@@ -306,7 +298,7 @@ input[type='number'] {
 .action-buttons__evaluate {
   flex: 1;
   padding: 8px 16px;
-  font-size: var(--title-medium-size);
+  font-size: var(--body-medium-size);
   font-weight: 600;
   color: white;
   border: none;
@@ -344,7 +336,7 @@ input[type='number'] {
 
 .action-buttons__reset {
   padding: 8px 16px;
-  font-size: var(--title-medium-size);
+  font-size: var(--body-medium-size);
   font-weight: 600;
   background-color: transparent;
   border: 1px solid currentColor;
@@ -386,7 +378,7 @@ input[type='number'] {
 
 .dice-actions button {
   padding: 8px 16px;
-  font-size: var(--title-medium-size);
+  font-size: var(--body-medium-size);
   font-weight: 600;
   color: white;
   border: none;
@@ -467,7 +459,7 @@ input[type='number'] {
   display: flex;
   gap: 8px;
   justify-content: center;
-  padding: 6px 0;
+  padding: 3px 0;
 }
 
 .dice-item {
@@ -901,7 +893,7 @@ input[type='number'] {
   .layout__main {
     padding: 12px;
     padding-bottom: calc(var(--bottom-nav-height) + 12px);
-    gap: 4px;
+    gap: 2px;
   }
 
   .dice-item {

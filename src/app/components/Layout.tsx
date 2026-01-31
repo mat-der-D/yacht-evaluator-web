@@ -67,12 +67,6 @@ export default function Layout() {
     <div className={`layout layout--${gameState.mode}`}>
       <GameHeader />
 
-      <div className="breadcrumb">
-        <a href="/">ホーム</a>
-        <span> &gt; </span>
-        <span>ヨット局面評価</span>
-      </div>
-
       <main className="layout__main">
         <ScoreSheet />
 

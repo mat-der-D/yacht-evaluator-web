@@ -7,7 +7,12 @@ export default function GameHeader() {
 
   return (
     <header className={`game-header game-header--${gameState.mode}`}>
-      <span className="game-header__title">ヨット局面評価</span>
+      <div className="game-header__left">
+        <a href="/" className="game-header__home" aria-label="ホームに戻る">
+          🏠
+        </a>
+        <span className="game-header__title">ヨット局面評価</span>
+      </div>
       <span className="game-header__score">スコア: {totalScore}</span>
     </header>
   );
