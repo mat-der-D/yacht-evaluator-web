@@ -68,6 +68,8 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .game-header--play {
@@ -116,6 +118,8 @@
   overflow: hidden;
   min-height: 0;
   margin-bottom: 4px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .score-sheet table {
