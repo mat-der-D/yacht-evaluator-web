@@ -49,13 +49,13 @@
   flex-direction: column;
   padding: var(--content-padding);
   padding-bottom: calc(var(--bottom-nav-height) + var(--content-padding));
-  gap: 12px;
+  gap: 6px;
 }
 
 .layout__divider {
   height: 1px;
   background-color: var(--outline);
-  margin: 8px 0;
+  margin: 4px 0;
 }
 
 /* -----------------------------------------
@@ -119,6 +119,10 @@
    ----------------------------------------- */
 .score-sheet {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .score-sheet table {
@@ -129,12 +133,22 @@
   box-shadow: var(--shadow-md);
   border: 1px solid var(--outline-variant);
   background-color: var(--surface);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.score-sheet tbody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .score-sheet tr {
   display: flex;
   align-items: center;
-  min-height: 38px;
+  flex: 1;
+  min-height: 0;
   border-bottom: 1px solid var(--outline);
 }
 
@@ -143,13 +157,13 @@
 }
 
 .score-sheet td {
-  padding: 8px 12px;
+  padding: 4px 8px;
 }
 
 .score-label {
   flex: 2;
   text-align: left;
-  font-size: var(--body-medium-size);
+  font-size: var(--body-small-size);
   font-weight: var(--body-medium-weight);
   color: var(--on-surface);
 }
@@ -157,12 +171,12 @@
 .score-value {
   flex: 1;
   text-align: right;
-  font-size: var(--body-medium-size);
+  font-size: var(--body-small-size);
   color: var(--on-surface);
 }
 
 .score-action {
-  flex: 0 0 60px;
+  flex: 0 0 44px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -188,13 +202,13 @@
 
 /* Score Sheet Buttons */
 .score-sheet button {
-  width: 44px;
-  height: 32px;
+  width: 36px;
+  height: 24px;
   color: white;
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: var(--body-medium-size);
+  font-size: var(--body-small-size);
   font-weight: 600;
   transition: all var(--transition-fast);
 }
@@ -226,13 +240,13 @@
 .score-cell-input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   width: 100%;
 }
 
 .score-cell-input {
   width: 100%;
-  padding: 4px 8px;
+  padding: 2px 6px;
   font-size: 16px;
   border: 1px solid #808080;
   border-radius: var(--radius-sm);
@@ -285,13 +299,13 @@ input[type='number'] {
    ----------------------------------------- */
 .action-buttons {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   justify-content: center;
 }
 
 .action-buttons__evaluate {
   flex: 1;
-  padding: 12px 24px;
+  padding: 8px 16px;
   font-size: var(--title-medium-size);
   font-weight: 600;
   color: white;
@@ -299,7 +313,7 @@ input[type='number'] {
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
-  min-height: 44px;
+  min-height: 32px;
 }
 
 .action-buttons--play .action-buttons__evaluate:not(:disabled) {
@@ -329,7 +343,7 @@ input[type='number'] {
 }
 
 .action-buttons__reset {
-  padding: 12px 20px;
+  padding: 8px 16px;
   font-size: var(--title-medium-size);
   font-weight: 600;
   background-color: transparent;
@@ -337,7 +351,7 @@ input[type='number'] {
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
-  min-height: 44px;
+  min-height: 32px;
 }
 
 .action-buttons--play .action-buttons__reset {
@@ -363,15 +377,15 @@ input[type='number'] {
    ----------------------------------------- */
 .dice-actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   justify-content: center;
   align-items: center;
-  min-height: 44px;
+  min-height: 32px;
   flex-wrap: wrap;
 }
 
 .dice-actions button {
-  padding: 12px 24px;
+  padding: 8px 16px;
   font-size: var(--title-medium-size);
   font-weight: 600;
   color: white;
@@ -379,7 +393,7 @@ input[type='number'] {
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: all var(--transition-fast);
-  min-height: 44px;
+  min-height: 32px;
 }
 
 .layout--play .dice-actions button:not(:disabled) {
@@ -410,7 +424,7 @@ input[type='number'] {
   gap: 6px;
   cursor: pointer;
   font-size: var(--body-medium-size);
-  min-height: 44px;
+  min-height: 32px;
   padding: 0 8px;
 }
 
@@ -453,7 +467,7 @@ input[type='number'] {
   display: flex;
   gap: 8px;
   justify-content: center;
-  padding: 10px 0;
+  padding: 6px 0;
 }
 
 .dice-item {
@@ -887,6 +901,7 @@ input[type='number'] {
   .layout__main {
     padding: 12px;
     padding-bottom: calc(var(--bottom-nav-height) + 12px);
+    gap: 4px;
   }
 
   .dice-item {
@@ -906,11 +921,13 @@ input[type='number'] {
   }
 
   .action-buttons {
-    flex-direction: column;
+    flex-direction: row;
   }
 
+  .action-buttons__evaluate,
   .action-buttons__reset {
-    width: 100%;
+    padding: 6px 12px;
+    font-size: var(--body-medium-size);
   }
 }
 
