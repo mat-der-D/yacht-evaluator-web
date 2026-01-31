@@ -8,3 +8,7 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>
 );
+
+if ('serviceWorkder' in navigator) {
+  navigator.serviceWorker.register('/app/sw.js');
+}
