@@ -154,7 +154,7 @@
 }
 
 .score-sheet td {
-  padding: 4px 8px;
+  padding: 0px 6px;
 }
 
 .score-label {
@@ -949,10 +949,6 @@ input[type='number'] {
   .score-value {
     font-size: 12px;
   }
-
-  .score-sheet td {
-    padding: 0px 6px;
-  }
 }
 
 /* 縦が長い画面: 少し大きめ */
@@ -960,10 +956,6 @@ input[type='number'] {
   .score-label,
   .score-value {
     font-size: 14px;
-  }
-
-  .score-sheet td {
-    padding: 0px 6px;
   }
 }
 
@@ -973,10 +965,6 @@ input[type='number'] {
   .score-value {
     font-size: 16px;
   }
-
-  .score-sheet td {
-    padding: 0px 6px;
-  }
 }
 
 /* 縦がかなり長い画面(タブレット等): さらに大きめ */
@@ -984,10 +972,6 @@ input[type='number'] {
   .score-label,
   .score-value {
     font-size: 18px;
-  }
-
-  .score-sheet td {
-    padding: 1px 6px;
   }
 }
 
