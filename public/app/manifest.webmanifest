@@ -1,6 +1,6 @@
 {
-  "name": "Yacht Evaluator",
-  "short_name": "YachtEval",
+  "name": "ヨット局面評価 for アソビ大全51",
+  "short_name": "ヨット評価",
   "start_url": "/app/",
   "scope": "/app/",
   "display": "standalone",
