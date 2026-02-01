@@ -20,6 +20,7 @@
   font-family: var(--font-family);
   min-height: 100vh;
   min-height: 100dvh;
+  min-height: var(--viewport-height, 100dvh);
   transition: background-color var(--transition-normal);
   /* テキスト選択を無効化 */
   user-select: none;
@@ -44,6 +45,7 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
+  min-height: var(--viewport-height, 100dvh);
   max-width: var(--content-max-width);
   margin: 0 auto;
 }
