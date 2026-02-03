@@ -44,6 +44,7 @@ export default function DiceItem({ index }: { index: number }) {
 
   const handleClick = () => {
     if (gameState.mode === 'play') {
+      if (gameState.rollCount === 0) return;
       dispatch({ type: 'TOGGLE_DICE_LOCK', payload: index });
     } else {
       dispatch({ type: 'INCREMENT_DICE', payload: index });
